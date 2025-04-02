@@ -1,0 +1,39 @@
+name: Bug Report
+description: "Only report the bug of the framework skeleton here. For bugs in the framework, you should click the link below:"
+body:
+  - type: markdown
+    attributes:
+      value: "Please read [our full contribution guide](https://hypervel.org/docs/contributions#bug-reports) before submitting bug reports. If you notice improper DocBlock, PHPStan, or IDE warnings while using Hypervel, do not create a GitHub issue. Instead, please submit a pull request to fix the problem."
+  - type: input
+    attributes:
+      label: PHP Version
+      description: Provide the PHP version that you are using.
+      placeholder: 8.4.3
+    validations:
+      required: true
+  - type: input
+    attributes:
+      label: Swoole Extension Version
+      description: Provide the Swoole extension version that you are using (You can get it by running `php --ri swoole`).
+      placeholder: 5.1.6
+    validations:
+      required: true
+  - type: input
+    attributes:
+      label: Database Driver & Version
+      description: If applicable, provide the database driver and version you are using.
+      placeholder: "MySQL 8.0.31 for macOS 13.0 on arm64 (Homebrew)"
+    validations:
+      required: false
+  - type: textarea
+    attributes:
+      label: Description
+      description: Provide a detailed description of the issue you are facing.
+    validations:
+      required: true
+  - type: textarea
+    attributes:
+      label: Steps To Reproduce
+      description: Provide detailed steps to reproduce your issue. If necessary, please provide a GitHub repository to demonstrate your issue.
+    validations:
+      required: true
