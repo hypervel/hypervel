@@ -1,4 +1,4 @@
-<p align="center"><a href="https://hypervel.org target="_blank"><img src="https://hypervel.org/logo.svg" width="400"></a></p>
+<p align="center"><a href="https://hypervel.org" target="_blank"><img src="https://hypervel.org/logo.svg" width="400"></a></p>
 
 <p align="center">
 <a href="https://github.com/hypervel/hypervel/actions"><img src="https://github.com/hypervel/hypervel/workflows/tests/badge.svg" alt="Build Status"></a>
