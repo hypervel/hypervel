@@ -28,7 +28,7 @@
         "mockery/mockery": "^1.5.1",
         "nunomaduro/collision": "^8.5",
         "phpstan/phpstan": "^1.11.5",
-        "phpunit/phpunit": "^10.0.7",
+        "phpunit/phpunit": "10.5.45",
         "swoole/ide-helper": "~5.1.0"
     },
     "autoload": {
