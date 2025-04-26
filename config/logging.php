@@ -61,14 +61,14 @@ return [
 
         'single' => [
             'driver' => 'single',
-            'path' => storage_path('logs/hyperf.log'),
+            'path' => storage_path('logs/hypervel.log'),
             'level' => env('LOG_LEVEL', 'debug'),
             'replace_placeholders' => true,
         ],
 
         'daily' => [
             'driver' => 'daily',
-            'path' => storage_path('logs/hyperf.log'),
+            'path' => storage_path('logs/hypervel.log'),
             'level' => env('LOG_LEVEL', 'debug'),
             'days' => 14,
             'replace_placeholders' => true,
@@ -134,7 +134,7 @@ return [
         ],
 
         'emergency' => [
-            'path' => storage_path('logs/hyperf.log'),
+            'path' => storage_path('logs/hypervel.log'),
         ],
     ],
 ];
