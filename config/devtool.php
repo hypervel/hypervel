@@ -73,5 +73,11 @@ return [
             'namespace' => 'App\Policies',
             'model_namespace' => 'App\Models',
         ],
+        'rule' => [
+            'namespace' => 'App\Rules',
+        ],
+        'controller' => [
+            'namespace' => 'App\Controllers',
+        ],
     ],
 ];
