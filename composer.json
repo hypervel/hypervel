@@ -14,7 +14,6 @@
     "license": "MIT",
     "require": {
         "php": ">=8.2",
-        "ext-redis": "*",
         "friendsofhyperf/tinker": "~3.1.0",
         "hypervel/framework": "^0.2"
     },
