@@ -30,6 +30,11 @@ $app->define(
     App\Console\Kernel::class
 );
 
+$app->define(
+    Hypervel\Foundation\Exceptions\Contracts\ExceptionHandler::class,
+    App\Exceptions\Handler::class
+);
+
 Hypervel\Context\ApplicationContext::setContainer($app);
 
 return $app;
