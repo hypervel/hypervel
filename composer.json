@@ -14,7 +14,6 @@
     "license": "MIT",
     "require": {
         "php": ">=8.2",
-        "ext-redis": "*",
         "friendsofhyperf/tinker": "~3.1.0",
         "hypervel/framework": "^0.2"
     },
@@ -48,6 +47,7 @@
     "minimum-stability": "dev",
     "prefer-stable": true,
     "suggest": {
+        "ext-redis": "Required to use Redis-based drivers, such as cache, session, queue, etc.",
         "ext-fileinfo": "Required to use the Filesystem class.",
         "ext-ftp": "Required to use the Flysystem FTP driver.",
         "ext-hash": "Required to use the Filesystem class.",
