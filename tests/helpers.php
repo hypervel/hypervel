@@ -6,10 +6,10 @@ use Hyperf\Testing\ModelFactory;
 use Hypervel\Context\ApplicationContext;
 
 if (! function_exists('factory')) {
-    function factory(string $class)
+    function factory(string $class, mixed ...$arguments)
     {
         return ApplicationContext::getContainer()
             ->get(ModelFactory::class)
-            ->factory(...func_get_args());
+            ->factory($class, ...$arguments);
     }
 }
