@@ -25,6 +25,13 @@ class RefreshDatabaseTest extends TestCase
         ]);
     }
 
+    public function testCreateMultipleUsers()
+    {
+        factory(User::class, $count = 5)->create();
+
+        $this->assertDatabaseCount('users', $count);
+    }
+
     public function testZeroUserAfterRefresh()
     {
         $this->assertSame(0, User::count());
