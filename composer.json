@@ -47,6 +47,7 @@
     "minimum-stability": "dev",
     "prefer-stable": true,
     "suggest": {
+        "ext-redis": "Required to use Redis-based drivers, such as cache, session, queue, etc.",
         "ext-fileinfo": "Required to use the Filesystem class.",
         "ext-ftp": "Required to use the Flysystem FTP driver.",
         "ext-hash": "Required to use the Filesystem class.",
