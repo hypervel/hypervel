@@ -10,6 +10,6 @@ if (! function_exists('factory')) {
     {
         return ApplicationContext::getContainer()
             ->get(ModelFactory::class)
-            ->factory($class);
+            ->factory(...func_get_args());
     }
 }
