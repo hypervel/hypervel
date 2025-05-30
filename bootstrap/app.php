@@ -25,12 +25,12 @@ $app = new Hypervel\Foundation\Application();
 |
 */
 
-$app->define(
+$app->bind(
     Hypervel\Foundation\Console\Contracts\Kernel::class,
     App\Console\Kernel::class
 );
 
-$app->define(
+$app->bind(
     Hypervel\Foundation\Exceptions\Contracts\ExceptionHandler::class,
     App\Exceptions\Handler::class
 );
