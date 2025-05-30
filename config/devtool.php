@@ -76,8 +76,8 @@ return [
         'rule' => [
             'namespace' => 'App\Rules',
         ],
-        'controller' => [
-            'namespace' => 'App\Controllers',
+        'resource' => [
+            'namespace' => 'App\Http\Resources',
         ],
     ],
 ];
