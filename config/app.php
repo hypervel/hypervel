@@ -2,6 +2,7 @@
 
 declare(strict_types=1);
 
+use Hypervel\Support\Facades\Facade;
 use Hypervel\Support\ServiceProvider;
 use Psr\Log\LogLevel;
 
@@ -80,18 +81,6 @@ return [
 
     /*
     |--------------------------------------------------------------------------
-    | Debug Mode for Command Errors
-    |--------------------------------------------------------------------------
-    |
-    | This value determines whether the stack strace will be displayed
-    | when errors occur in the command line.
-    |
-    */
-
-    'command_debug_enabled' => env('COMMAND_DEBUG_ENABLED', false),
-
-    /*
-    |--------------------------------------------------------------------------
     | Application URL
     |--------------------------------------------------------------------------
     |
@@ -166,42 +155,17 @@ return [
         App\Providers\RouteServiceProvider::class,
     ])->toArray(),
 
-    'aliases' => [
-        'App' => Hypervel\Support\Facades\App::class,
-        'Artisan' => Hypervel\Support\Facades\Artisan::class,
-        'Auth' => Hypervel\Support\Facades\Auth::class,
-        'Blade' => Hypervel\Support\Facades\Blade::class,
-        'Broadcast' => Hypervel\Support\Facades\Broadcast::class,
-        'Bus' => Hypervel\Support\Facades\Bus::class,
-        'Cache' => Hypervel\Support\Facades\Cache::class,
-        'Config' => Hypervel\Support\Facades\Config::class,
-        'Cookie' => Hypervel\Support\Facades\Cookie::class,
-        'Crypt' => Hypervel\Support\Facades\Crypt::class,
-        'Date' => Hypervel\Support\Facades\Date::class,
-        'DB' => Hypervel\Support\Facades\DB::class,
-        'Environment' => Hypervel\Support\Facades\Environment::class,
-        'Event' => Hypervel\Support\Facades\Event::class,
-        'File' => Hypervel\Support\Facades\File::class,
-        'Gate' => Hypervel\Support\Facades\Gate::class,
-        'Hash' => Hypervel\Support\Facades\Hash::class,
-        'Http' => Hypervel\Support\Facades\Http::class,
-        'JWT' => Hypervel\Support\Facades\JWT::class,
-        'Lang' => Hypervel\Support\Facades\Lang::class,
-        'Log' => Hypervel\Support\Facades\Log::class,
-        'Mail' => Hypervel\Support\Facades\Mail::class,
-        'Notification' => Hypervel\Support\Facades\Notification::class,
-        'Process' => Hypervel\Support\Facades\Process::class,
-        'Queue' => Hypervel\Support\Facades\Queue::class,
-        'RateLimiter' => Hypervel\Support\Facades\RateLimiter::class,
-        'Redis' => Hypervel\Support\Facades\Redis::class,
-        'Request' => Hypervel\Support\Facades\Request::class,
-        'Response' => Hypervel\Support\Facades\Response::class,
-        'Route' => Hypervel\Support\Facades\Route::class,
-        'Schedule' => Hypervel\Support\Facades\Schedule::class,
-        'Session' => Hypervel\Support\Facades\Session::class,
-        'Storage' => Hypervel\Support\Facades\Storage::class,
-        'URL' => Hypervel\Support\Facades\URL::class,
-        'Validator' => Hypervel\Support\Facades\Validator::class,
-        'View' => Hypervel\Support\Facades\View::class,
-    ],
+    /*
+    |--------------------------------------------------------------------------
+    | Class Aliases
+    |--------------------------------------------------------------------------
+    |
+    | This array of class aliases will be registered when this application
+    | is started.
+    |
+    */
+
+    'aliases' => Facade::defaultAliases()->merge([
+        // 'Example' => App\Facades\Example::class,
+    ])->toArray(),
 ];
