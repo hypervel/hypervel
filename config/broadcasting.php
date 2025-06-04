@@ -81,6 +81,11 @@ return [
             ],
         ],
 
+        'redis' => [
+            'driver' => 'redis',
+            'connection' => env('REDIS_BROADCAST_CONNECTION', 'default'),
+        ],
+
         'log' => [
             'driver' => 'log',
         ],
