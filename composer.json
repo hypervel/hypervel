@@ -54,7 +54,6 @@
         "ext-pcntl": "Required to use all features of the queue worker.",
         "ext-posix": "Required to use all features of the queue worker.",
         "ably/ably-php": "Required to use the Ably broadcast driver (^1.0).",
-        "hyperf/database-pgsql": "Required to use the 'pgsql' PostgreSQL database connection (^3.1).",
         "pusher/pusher-php-server": "Required to use the Pusher broadcast driver (^6.0|^7.0).",
         "league/flysystem-path-prefixing": "Required to use the scoped driver (^3.3).",
         "league/flysystem-read-only": "Required to use read-only disks (^3.3)",
