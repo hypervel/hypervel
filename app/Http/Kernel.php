@@ -35,6 +35,7 @@ class Kernel extends HttpKernel
         ],
 
         'api' => [
+            // \Hypervel\Sanctum\Http\Middleware\EnsureFrontendRequestsAreStateful::class,
             // 'throttle:60,1,api',
             // \Hypervel\Router\Middleware\SubstituteBindings::class,
         ],
