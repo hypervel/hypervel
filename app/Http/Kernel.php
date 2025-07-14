@@ -54,6 +54,8 @@ class Kernel extends HttpKernel
         'throttle' => \Hypervel\Router\Middleware\ThrottleRequests::class,
         'bindings' => \Hypervel\Router\Middleware\SubstituteBindings::class,
         'signed' => \App\Http\Middleware\ValidateSignature::class,
+        'abilities' => \Hypervel\Sanctum\Http\Middleware\CheckAbilities::class,
+        'ability' => \Hypervel\Sanctum\Http\Middleware\CheckForAnyAbility::class,
     ];
 
     /**
