@@ -44,6 +44,7 @@ return [
             'driver' => env('DB_DRIVER', 'pgsql'),
             'host' => env('DB_HOST', 'localhost'),
             'database' => env('DB_DATABASE', 'hypervel'),
+            'schema' => env('DB_SCHEMA', 'public'),
             'port' => env('DB_PORT', 5432),
             'username' => env('DB_USERNAME', 'root'),
             'password' => env('DB_PASSWORD', ''),
