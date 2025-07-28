@@ -17,6 +17,7 @@ class Kernel extends HttpKernel
      */
     protected array $middleware = [
         // \App\Http\Middleware\TrimStrings::class,
+        // \Hypervel\Http\Middleware\HandleCors::class,
         // \App\Http\Middleware\ConvertEmptyStringsToNull::class
     ];
 

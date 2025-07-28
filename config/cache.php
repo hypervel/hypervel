@@ -68,6 +68,16 @@ return [
                 'redis',
             ],
         ],
+
+        'database' => [
+            'driver' => 'database',
+            'connection' => env('DB_CACHE_CONNECTION', env('DB_CONNECTION', 'default')),
+            'table' => env('DB_CACHE_TABLE', 'cache'),
+            'lock_connection' => env('DB_CACHE_LOCK_CONNECTION'),
+            'lock_table' => env('DB_CACHE_LOCK_TABLE', 'cache_locks'),
+            'lock_lottery' => [2, 100],
+            'lock_timeout' => 86400,
+        ],
     ],
 
     'swoole_tables' => [

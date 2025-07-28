@@ -88,7 +88,7 @@
         "post-autoload-dump": [
             "rm -rf runtime/container"
         ],
-        "test": "co-phpunit --prepend tests/bootstrap.php -c phpunit.xml.dist --colors=always",
+        "test": "phpunit -c phpunit.xml.dist --colors=always",
         "cs-diff": "php-cs-fixer fix --path-mode=intersection `git diff --name-only --diff-filter=ACMRTUXB origin/main..HEAD`",
         "cs-fix": "php-cs-fixer fix $1",
         "analyse": "phpstan analyse --memory-limit 300M -c phpstan.neon",
