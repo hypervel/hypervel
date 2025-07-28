@@ -73,24 +73,6 @@ return [
             'prefix' => '',
             'foreign_key_constraints' => env('DB_FOREIGN_KEYS', true),
         ],
-
-        'pgsql' => [
-            'driver' => env('DB_DRIVER', 'pgsql'),
-            'host' => env('DB_HOST', 'localhost'),
-            'database' => env('DB_DATABASE', 'hypervel'),
-            'port' => env('DB_PORT', 5432),
-            'username' => env('DB_USERNAME', 'root'),
-            'password' => env('DB_PASSWORD', ''),
-            'charset' => env('DB_CHARSET', 'utf8'),
-            'pool' => [
-                'min_connections' => 1,
-                'max_connections' => env('DB_MAX_CONNECTIONS', 10),
-                'connect_timeout' => 10.0,
-                'wait_timeout' => 3.0,
-                'heartbeat' => -1,
-                'max_idle_time' => (float) env('DB_MAX_IDLE_TIME', 60),
-            ],
-        ],
     ],
 
     /*
