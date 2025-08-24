@@ -20,3 +20,4 @@
 /.phpunit.cache
 .phpactor.json
 .phpunit.result.cache
+/database/*.sqlite
