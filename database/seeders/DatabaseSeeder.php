@@ -2,7 +2,9 @@
 
 declare(strict_types=1);
 
-use Hyperf\Database\Seeders\Seeder;
+namespace Database\Seeders;
+
+use Hypervel\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
 {
@@ -11,11 +13,9 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
-        // \App\Models\User::factory(10)->create();
-
-        // \App\Models\User::factory()->create([
-        //     'name' => 'Test User',
-        //     'email' => 'test@example.com',
-        // ]);
+        factory(\App\Models\User::class)->create([
+            'name' => 'Test User',
+            'email' => 'test@example.com',
+        ]);
     }
 }
