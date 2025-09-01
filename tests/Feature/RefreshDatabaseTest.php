@@ -18,7 +18,7 @@ class RefreshDatabaseTest extends TestCase
 
     public function testCreateUser()
     {
-        $user = factory(User::class)->create();
+        $user = User::factory()->create();
 
         $this->assertDatabaseHas('users', [
             'id' => $user->id,
@@ -27,7 +27,7 @@ class RefreshDatabaseTest extends TestCase
 
     public function testCreateMultipleUsers()
     {
-        factory(User::class, $count = 5)->create();
+        User::factory()->count($count = 5)->create();
 
         $this->assertDatabaseCount('users', $count);
     }
