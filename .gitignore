@@ -14,8 +14,10 @@
 /.vscode
 .phpactor.json
 /public/storage
+/database/*.sqlite
 /storage/*.key
 /node_modules
 /.phpunit.cache
 .phpactor.json
 .phpunit.result.cache
+/database/*.sqlite
