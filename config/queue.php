@@ -45,6 +45,10 @@ return [
             'driver' => 'sync',
         ],
 
+        'coroutine' => [
+            'driver' => 'coroutine',
+        ],
+
         'defer' => [
             'driver' => 'defer',
         ],
