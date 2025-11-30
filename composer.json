@@ -15,8 +15,7 @@
     "require": {
         "php": ">=8.2",
         "friendsofhyperf/tinker": "~3.1.0",
-        "hypervel/framework": "^0.3",
-        "hypervel/redis": "^0.3"
+        "hypervel/framework": "^0.3"
     },
     "require-dev": {
         "fakerphp/faker": "^1.24.1",
@@ -30,6 +29,9 @@
         "phpstan/phpstan": "^1.11.5",
         "phpunit/phpunit": "10.5.45",
         "swoole/ide-helper": "~5.1.0"
+    },
+    "suggest": {
+        "hypervel/redis": "Required to use the Redis features and drivers such as cache and queue drivers (^0.3.0)."
     },
     "autoload": {
         "psr-4": {
