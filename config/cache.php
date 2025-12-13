@@ -47,6 +47,7 @@ return [
         'redis' => [
             'driver' => 'redis',
             'connection' => 'default',
+            'tag_mode' => env('REDIS_CACHE_TAG_MODE', 'all'), // Redis 8.0+ and PhpRedis 6.3.0+ required for 'any'
             'lock_connection' => 'default',
         ],
 
