@@ -26,10 +26,16 @@ class Handler extends ExceptionHandler
      */
     public function register(): void
     {
-        // return json when path start with `api`
         $this->shouldRenderJsonWhen(function (Request $request, Throwable $e) {
-            return str_starts_with($path = $request->path(), 'api')
-                && (strlen($path) === 3 || $path[3] === '/');
+            $path = $request->path();
+
+            // API routes always return JSON
+            if (str_starts_with($path, 'api') && (strlen($path) === 3 || $path[3] === '/')) {
+                return true;
+            }
+
+            // Fall back to content negotiation
+            return $request->expectsJson();
         });
 
         $this->reportable(function (Throwable $e) {
