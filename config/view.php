@@ -33,4 +33,17 @@ return [
         'VIEW_COMPILED_PATH',
         realpath(storage_path('framework/views'))
     ),
+
+    /*
+    |--------------------------------------------------------------------------
+    | View Event Settings
+    |--------------------------------------------------------------------------
+    |
+    | Here you may enable or disable view event listening for your
+    |
+    */
+
+    'event' => [
+        'enable' => env('VIEW_EVENT_ENABLE', false),
+    ]
 ];
