@@ -53,7 +53,7 @@ return [
             'namespace' => 'App\Providers',
         ],
         'component' => [
-            'namespace' => 'App\View\Component',
+            'namespace' => 'App\View\Components',
         ],
         'channel' => [
             'namespace' => 'App\Broadcasting',
