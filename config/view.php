@@ -45,5 +45,5 @@ return [
 
     'event' => [
         'enable' => env('VIEW_EVENT_ENABLE', false),
-    ]
+    ],
 ];
