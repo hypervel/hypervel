@@ -35,4 +35,4 @@ Hypervel\Foundation\ClassLoader::init(null, null, new TestScanHandler());
 
 $app = require BASE_PATH . '/bootstrap/app.php';
 
-$app->get(Hyperf\Contract\ApplicationInterface::class);
+$app->make(Hypervel\Contracts\Console\Application::class);
