@@ -3,8 +3,8 @@
 declare(strict_types=1);
 
 use App\Http\Kernel as HttpKernel;
-use Hyperf\Server\Event;
-use Hyperf\Server\Server;
+use Hypervel\Server\Event;
+use Hypervel\Server\Server;
 use Swoole\Constant;
 
 return [
@@ -38,8 +38,8 @@ return [
         Constant::OPTION_BUFFER_OUTPUT_SIZE => 2 * 1024 * 1024,
     ],
     'callbacks' => [
-        Event::ON_WORKER_START => [Hyperf\Framework\Bootstrap\WorkerStartCallback::class, 'onWorkerStart'],
-        Event::ON_PIPE_MESSAGE => [Hyperf\Framework\Bootstrap\PipeMessageCallback::class, 'onPipeMessage'],
-        Event::ON_WORKER_EXIT => [Hyperf\Framework\Bootstrap\WorkerExitCallback::class, 'onWorkerExit'],
+        Event::ON_WORKER_START => [Hypervel\Framework\Bootstrap\WorkerStartCallback::class, 'onWorkerStart'],
+        Event::ON_PIPE_MESSAGE => [Hypervel\Framework\Bootstrap\PipeMessageCallback::class, 'onPipeMessage'],
+        Event::ON_WORKER_EXIT => [Hypervel\Framework\Bootstrap\WorkerExitCallback::class, 'onWorkerExit'],
     ],
 ];
