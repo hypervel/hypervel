@@ -2,7 +2,6 @@
 
 declare(strict_types=1);
 
-use App\Http\Kernel as HttpKernel;
 use Hypervel\Server\Event;
 use Hypervel\Server\Server;
 use Swoole\Constant;
@@ -17,12 +16,27 @@ return [
             'port' => (int) env('HTTP_SERVER_PORT', 9501),
             'sock_type' => SWOOLE_SOCK_TCP,
             'callbacks' => [
-                Event::ON_REQUEST => [HttpKernel::class, 'onRequest'],
+                Event::ON_REQUEST => [Hypervel\HttpServer\Server::class, 'onRequest'],
+            ],
+            'options' => [
+                // Enable request lifecycle events (used by Telescope, etc.)
+                'enable_request_lifecycle' => false,
             ],
         ],
-    ],
-    'kernels' => [
-        'http' => HttpKernel::class,
+
+        // Uncomment to enable the WebSocket server on port 9502.
+        // [
+        //     'name' => 'ws',
+        //     'type' => Server::SERVER_WEBSOCKET,
+        //     'host' => env('WS_SERVER_HOST', '0.0.0.0'),
+        //     'port' => (int) env('WS_SERVER_PORT', 9502),
+        //     'sock_type' => SWOOLE_SOCK_TCP,
+        //     'callbacks' => [
+        //         Event::ON_HAND_SHAKE => [Hypervel\Foundation\Http\WebsocketKernel::class, 'onHandShake'],
+        //         Event::ON_MESSAGE => [Hypervel\Foundation\Http\WebsocketKernel::class, 'onMessage'],
+        //         Event::ON_CLOSE => [Hypervel\Foundation\Http\WebsocketKernel::class, 'onClose'],
+        //     ],
+        // ],
     ],
     'settings' => [
         'document_root' => base_path('public'),

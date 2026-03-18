@@ -29,16 +29,17 @@ class Kernel extends HttpKernel
      */
     protected array $middlewareGroups = [
         'web' => [
-            // \Hypervel\Router\Middleware\SubstituteBindings::class,
+            // \Hypervel\Cookie\Middleware\EncryptCookies::class,
             // \Hypervel\Cookie\Middleware\AddQueuedCookiesToResponse::class,
             // \Hypervel\Session\Middleware\StartSession::class,
             // \Hypervel\View\Middleware\ShareErrorsFromSession::class,
             // \App\Http\Middleware\VerifyCsrfToken::class,
+            // \Hypervel\Routing\Middleware\SubstituteBindings::class,
         ],
 
         'api' => [
             // 'throttle:60,1,api',
-            // \Hypervel\Router\Middleware\SubstituteBindings::class,
+            // \Hypervel\Routing\Middleware\SubstituteBindings::class,
         ],
     ];
 
@@ -52,8 +53,8 @@ class Kernel extends HttpKernel
     protected array $middlewareAliases = [
         'auth' => \App\Http\Middleware\Authenticate::class,
         'can' => \Hypervel\Auth\Middleware\Authorize::class,
-        'throttle' => \Hypervel\Router\Middleware\ThrottleRequests::class,
-        'bindings' => \Hypervel\Router\Middleware\SubstituteBindings::class,
+        'throttle' => \Hypervel\Routing\Middleware\ThrottleRequests::class,
+        'bindings' => \Hypervel\Routing\Middleware\SubstituteBindings::class,
         'signed' => \App\Http\Middleware\ValidateSignature::class,
     ];
 
@@ -65,8 +66,8 @@ class Kernel extends HttpKernel
      * @var string[]
      */
     protected array $middlewarePriority = [
-        // \Hypervel\Router\Middleware\ThrottleRequests::class,
-        // \Hypervel\Router\Middleware\SubstituteBindings::class,
+        // \Hypervel\Routing\Middleware\ThrottleRequests::class,
+        // \Hypervel\Routing\Middleware\SubstituteBindings::class,
         // \Hypervel\Session\Middleware\StartSession::class,
         // \Hypervel\View\Middleware\ShareErrorsFromSession::class,
         // \App\Http\Middleware\VerifyCsrfToken::class,

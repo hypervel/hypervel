@@ -26,6 +26,11 @@ $app = new Hypervel\Foundation\Application();
 */
 
 $app->bind(
+    Hypervel\Contracts\Http\Kernel::class,
+    App\Http\Kernel::class
+);
+
+$app->bind(
     Hypervel\Contracts\Console\Kernel::class,
     App\Console\Kernel::class
 );
