@@ -15,7 +15,7 @@
     "require": {
         "php": ">=8.2",
         "friendsofhyperf/tinker": "~3.1.0",
-        "hypervel/framework": "^0.3"
+        "hypervel/framework": "^0.4"
     },
     "require-dev": {
         "fakerphp/faker": "^1.24.1",

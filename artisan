@@ -15,12 +15,29 @@ require BASE_PATH . '/vendor/autoload.php';
 
 ! defined('SWOOLE_HOOK_FLAGS') && define('SWOOLE_HOOK_FLAGS', SWOOLE_HOOK_ALL);
 
+$httpBootstrapCommands = ['serve', 'watch'];
+
+if (in_array($_SERVER['argv'][1] ?? null, $httpBootstrapCommands, true)) {
+    putenv('APP_RUNNING_IN_CONSOLE=false');
+    $_ENV['APP_RUNNING_IN_CONSOLE'] = 'false';
+    $_SERVER['APP_RUNNING_IN_CONSOLE'] = 'false';
+}
+
 // Self-called anonymous function that creates its own scope and keep the global namespace clean.
 (function () {
     Hypervel\Foundation\ClassLoader::init();
-    /** @var Hypervel\Foundation\Contracts\Application $container */
-    $container = require BASE_PATH . '/bootstrap/app.php';
 
-    $application = $container->get(Hyperf\Contract\ApplicationInterface::class);
-    $application->run();
+    /** @var Hypervel\Contracts\Foundation\Application $app */
+    $app = require BASE_PATH . '/bootstrap/app.php';
+
+    $kernel = $app->make(Hypervel\Contracts\Console\Kernel::class);
+
+    $input = new Symfony\Component\Console\Input\ArgvInput();
+    $output = new Symfony\Component\Console\Output\ConsoleOutput();
+
+    $status = $kernel->handle($input, $output);
+
+    $kernel->terminate($input, $status);
+
+    exit($status);
 })();

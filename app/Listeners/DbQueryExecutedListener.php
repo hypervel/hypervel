@@ -4,10 +4,10 @@ declare(strict_types=1);
 
 namespace App\Listeners;
 
-use Hyperf\Collection\Arr;
-use Hyperf\Database\Events\QueryExecuted;
-use Hyperf\Event\Contract\ListenerInterface;
-use Hyperf\Framework\Logger\StdoutLogger;
+use Hypervel\Database\Events\QueryExecuted;
+use Hypervel\Support\Arr;
+use Hypervel\Event\Contracts\ListenerInterface;
+use Hypervel\Framework\Logger\StdoutLogger;
 use Psr\Container\ContainerInterface;
 use Psr\Log\LoggerInterface;
 

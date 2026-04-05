@@ -9,26 +9,15 @@ use Hypervel\Support\Facades\Route;
 
 class RouteServiceProvider extends BaseServiceProvider
 {
-    /**
-     * The route files for the application.
-     */
-    protected array $routes = [
-    ];
-
     public function boot(): void
     {
         parent::boot();
 
-        Route::group(
-            '/api',
-            base_path('routes/api.php'),
-            ['middleware' => 'api']
-        );
+        Route::middleware('api')
+            ->prefix('api')
+            ->group(base_path('routes/api.php'));
 
-        Route::group(
-            '/',
-            base_path('routes/web.php'),
-            ['middleware' => 'web']
-        );
+        Route::middleware('web')
+            ->group(base_path('routes/web.php'));
     }
 }
