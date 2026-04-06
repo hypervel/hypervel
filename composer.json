@@ -60,7 +60,7 @@
         "post-autoload-dump": [
             "@php artisan package:discover --ansi"
         ],
-        "test": "phpunit -c phpunit.xml.dist --colors=always",
+        "test": "phpunit --colors=always",
         "cs-diff": "php-cs-fixer fix --path-mode=intersection `git diff --name-only --diff-filter=ACMRTUXB origin/main..HEAD`",
         "cs-fix": "php-cs-fixer fix $1",
         "analyse": "phpstan analyse --memory-limit 300M -c phpstan.neon",
