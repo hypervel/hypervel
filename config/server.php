@@ -18,10 +18,6 @@ return [
             'callbacks' => [
                 Event::ON_REQUEST => [Hypervel\HttpServer\Server::class, 'onRequest'],
             ],
-            'options' => [
-                // Enable request lifecycle events (used by Telescope, etc.)
-                'enable_request_lifecycle' => false,
-            ],
         ],
     ],
     'settings' => [
