@@ -5,54 +5,42 @@
         "php",
         "swoole",
         "framework",
-        "hyperf",
-        "microservice",
         "laravel",
         "hypervel"
     ],
     "description": "A Laravel-style PHP framework with native coroutine support for ultra-high performance.",
     "license": "MIT",
     "require": {
-        "php": ">=8.2",
-        "friendsofhyperf/tinker": "~3.1.0",
+        "php": ">=8.4",
         "hypervel/framework": "^0.4"
     },
     "require-dev": {
-        "fakerphp/faker": "^1.24.1",
-        "filp/whoops": "^2.15",
+        "fakerphp/faker": "^1.24",
         "friendsofphp/php-cs-fixer": "^3.57.2",
-        "hyperf/testing": "~3.1.0",
-        "hyperf/watcher": "~3.1.0",
-        "hypervel/devtool": "^0.3",
+        "hypervel/watcher": "^0.4",
         "mockery/mockery": "1.6.x-dev",
-        "nunomaduro/collision": "^8.5",
-        "phpstan/phpstan": "^1.11.5",
-        "phpunit/phpunit": "10.5.45",
-        "swoole/ide-helper": "~5.1.0"
-    },
-    "suggest": {
-        "hypervel/redis": "Required to use the Redis features and drivers such as cache and queue drivers (^0.3.0)."
+        "nunomaduro/collision": "^8.9",
+        "phpstan/phpstan": "^2.0",
+        "phpunit/phpunit": "^13.0.3",
+        "swoole/ide-helper": "^6.0.2"
     },
     "autoload": {
         "psr-4": {
             "App\\": "app/",
             "Database\\Factories\\": "database/factories/",
             "Database\\Seeders\\": "database/seeders/"
-        },
-        "files": []
+        }
     },
     "autoload-dev": {
         "psr-4": {
             "Tests\\": "tests/"
-        },
-        "files": [
-            "tests/helpers.php"
-        ]
+        }
     },
     "minimum-stability": "dev",
     "prefer-stable": true,
     "config": {
         "optimize-autoloader": true,
+        "preferred-install": "dist",
         "sort-packages": true
     },
     "extra": {
@@ -70,15 +58,15 @@
             "@php artisan migrate --graceful --ansi"
         ],
         "post-autoload-dump": [
-            "rm -rf runtime/container"
+            "@php artisan package:discover --ansi"
         ],
         "test": "phpunit -c phpunit.xml.dist --colors=always",
         "cs-diff": "php-cs-fixer fix --path-mode=intersection `git diff --name-only --diff-filter=ACMRTUXB origin/main..HEAD`",
         "cs-fix": "php-cs-fixer fix $1",
         "analyse": "phpstan analyse --memory-limit 300M -c phpstan.neon",
-        "start": [
+        "serve": [
             "Composer\\Config::disableProcessTimeout",
-            "php artisan start"
+            "php artisan serve"
         ]
     }
 }
