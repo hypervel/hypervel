@@ -8,7 +8,7 @@ use PhpCsFixer\Runner\Parallel\ParallelConfig;
 $maxProcesses = function_exists('swoole_cpu_num') ? swoole_cpu_num() : 4;
 
 return (new Config())
-    ->setParallelConfig(new ParallelConfig($maxProcesses, 10))
+    ->setParallelConfig(new ParallelConfig($maxProcesses))
     ->setRiskyAllowed(true)
     ->setRules([
         '@PSR2' => true,
@@ -74,7 +74,14 @@ return (new Config())
         'no_unused_imports' => true,
         'not_operator_with_successor_space' => true,
         'not_operator_with_space' => false,
-        'ordered_class_elements' => true,
+        'ordered_class_elements' => [
+            'order' => [
+                'use_trait',
+            ],
+        ],
+        'phpdoc_to_comment' => [
+            'ignored_tags' => ['var'],
+        ],
         'php_unit_strict' => false,
         'phpdoc_separation' => false,
         'single_quote' => true,
@@ -84,14 +91,14 @@ return (new Config())
         // Since PHP 8.3, default null values can be declared as nullable.
         'nullable_type_declaration_for_default_null_value' => true,
         'single_line_empty_body' => false,
-        'phpdoc_to_comment' => [
-            'ignored_tags' => ['var'],
+        'ordered_types' => [
+            'null_adjustment' => 'always_last',
+            'sort_algorithm' => 'none',
         ],
     ])
     ->setFinder(
         PhpCsFixer\Finder::create()
             ->exclude('public')
-            ->exclude('runtime')
             ->exclude('storage')
             ->exclude('vendor')
             ->in(__DIR__)
