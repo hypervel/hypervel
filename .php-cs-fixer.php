@@ -90,6 +90,10 @@ return (new Config())
         'fully_qualified_strict_types' => false,
         // Since PHP 8.3, default null values can be declared as nullable.
         'nullable_type_declaration_for_default_null_value' => true,
+        'new_with_parentheses' => [
+            'named_class' => false,
+            'anonymous_class' => false,
+        ],
         'single_line_empty_body' => false,
         'ordered_types' => [
             'null_adjustment' => 'always_last',
