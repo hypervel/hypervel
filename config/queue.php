@@ -36,7 +36,7 @@ return [
     | used by your application. An example configuration is provided for
     | each backend supported by Hypervel. You're also free to add more.
     |
-    | Drivers: "sync", "defer", "database", "beanstalkd", "sqs", "redis", "null"
+    | Drivers: "sync", "background", "deferred", "database", "beanstalkd", "sqs", "redis", "null"
     |
     */
 
@@ -45,12 +45,12 @@ return [
             'driver' => 'sync',
         ],
 
-        'coroutine' => [
-            'driver' => 'coroutine',
+        'background' => [
+            'driver' => 'background',
         ],
 
-        'defer' => [
-            'driver' => 'defer',
+        'deferred' => [
+            'driver' => 'deferred',
         ],
 
         'database' => [
@@ -96,7 +96,7 @@ return [
 
         'redis' => [
             'driver' => 'redis',
-            'connection' => env('REDIS_QUEUE_CONNECTION', 'default'),
+            'connection' => env('REDIS_QUEUE_CONNECTION', 'queue'),
             'queue' => env('REDIS_QUEUE', 'default'),
             'retry_after' => (int) env('REDIS_QUEUE_RETRY_AFTER', 90),
             'block_for' => null,
@@ -129,7 +129,7 @@ return [
     | can control how and where failed jobs are stored. Hypervel ships with
     | support for storing failed jobs in a simple file or in a database.
     |
-    | Supported drivers: "database-uuids", "dynamodb", "file", "null"
+    | Supported drivers: "database-uuids", "file", "null"
     |
     */
 
