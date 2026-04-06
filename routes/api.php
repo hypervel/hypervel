@@ -2,7 +2,15 @@
 
 declare(strict_types=1);
 
-use App\Http\Controllers\IndexController;
+use Hypervel\Http\Request;
 use Hypervel\Support\Facades\Route;
 
-Route::any('/', [IndexController::class, 'index']);
+/*
+|--------------------------------------------------------------------------
+| API Routes
+|--------------------------------------------------------------------------
+*/
+
+// Route::get('/user', function (Request $request) {
+//     return $request->user();
+// })->middleware('auth:sanctum');
