@@ -2,44 +2,21 @@
 
 declare(strict_types=1);
 
-/*
-|--------------------------------------------------------------------------
-| Create The Application
-|--------------------------------------------------------------------------
-|
-| The first thing we will do is create a new Hypervel application instance
-| which serves as the "glue" for all the components of Hypervel, and is
-| the IoC container for the system binding all of the various parts.
-|
-*/
+use Hypervel\Foundation\Application;
+use Hypervel\Foundation\Configuration\Exceptions;
+use Hypervel\Foundation\Configuration\Middleware;
 
-$app = new Hypervel\Foundation\Application();
-
-/*
-|--------------------------------------------------------------------------
-| Bind Important Interfaces
-|--------------------------------------------------------------------------
-|
-| Next, we need to bind some important interfaces into the container so
-| we will be able to resolve them when needed.
-|
-*/
-
-$app->bind(
-    Hypervel\Contracts\Http\Kernel::class,
-    App\Http\Kernel::class
-);
-
-$app->bind(
-    Hypervel\Contracts\Console\Kernel::class,
-    App\Console\Kernel::class
-);
-
-$app->bind(
-    Hypervel\Contracts\Debug\ExceptionHandler::class,
-    App\Exceptions\Handler::class
-);
-
-Hypervel\Context\ApplicationContext::setContainer($app);
-
-return $app;
+return Application::configure(basePath: dirname(__DIR__))
+    ->withRouting(
+        web: __DIR__ . '/../routes/web.php',
+        api: __DIR__ . '/../routes/api.php',
+        commands: __DIR__ . '/../routes/console.php',
+        channels: __DIR__ . '/../routes/channels.php',
+        health: '/up',
+    )
+    ->withMiddleware(function (Middleware $middleware): void {
+        //
+    })
+    ->withExceptions(function (Exceptions $exceptions): void {
+        //
+    })->create();
