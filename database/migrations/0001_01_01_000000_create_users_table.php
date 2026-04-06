@@ -2,11 +2,12 @@
 
 declare(strict_types=1);
 
-use Hyperf\Database\Schema\Blueprint;
+use Hypervel\Database\Schema\Blueprint;
 use Hypervel\Database\Migrations\Migration;
 use Hypervel\Support\Facades\Schema;
 
-return new class extends Migration {
+return new class extends Migration
+{
     /**
      * Run the migrations.
      */
@@ -18,6 +19,7 @@ return new class extends Migration {
             $table->string('email')->unique();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
+            $table->rememberToken();
             $table->timestamps();
         });
     }
