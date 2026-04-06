@@ -18,7 +18,7 @@ return new class extends Migration
             $table->uuid()->unique();
             $table->text('connection');
             $table->text('queue');
-            $table->longText('payload');
+            $table->jsonb('payload');
             $table->longText('exception');
             $table->timestamp('failed_at')->useCurrent();
         });
