@@ -3,6 +3,11 @@
 
 declare(strict_types=1);
 
+use Hypervel\Foundation\Application;
+use Symfony\Component\Console\Input\ArgvInput;
+
+define('HYPERVEL_START', microtime(true));
+
 ini_set('display_errors', 'on');
 ini_set('display_startup_errors', 'on');
 ini_set('memory_limit', '1G');
@@ -23,21 +28,9 @@ if (in_array($_SERVER['argv'][1] ?? null, $httpBootstrapCommands, true)) {
     $_SERVER['APP_RUNNING_IN_CONSOLE'] = 'false';
 }
 
-// Self-called anonymous function that creates its own scope and keep the global namespace clean.
-(function () {
-    Hypervel\Foundation\ClassLoader::init();
+/** @var Application $app */
+$app = require BASE_PATH . '/bootstrap/app.php';
 
-    /** @var Hypervel\Contracts\Foundation\Application $app */
-    $app = require BASE_PATH . '/bootstrap/app.php';
+$status = $app->handleCommand(new ArgvInput());
 
-    $kernel = $app->make(Hypervel\Contracts\Console\Kernel::class);
-
-    $input = new Symfony\Component\Console\Input\ArgvInput();
-    $output = new Symfony\Component\Console\Output\ConsoleOutput();
-
-    $status = $kernel->handle($input, $output);
-
-    $kernel->terminate($input, $status);
-
-    exit($status);
-})();
+exit($status);
