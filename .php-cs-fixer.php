@@ -82,6 +82,9 @@ return (new Config())
         'phpdoc_to_comment' => [
             'ignored_tags' => ['var'],
         ],
+        'php_unit_method_casing' => [
+            'case' => 'snake_case',
+        ],
         'php_unit_strict' => false,
         'phpdoc_separation' => false,
         'single_quote' => true,
