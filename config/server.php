@@ -7,7 +7,21 @@ use Hypervel\Server\Server;
 use Swoole\Constant;
 
 return [
+
+    /*
+    |--------------------------------------------------------------------------
+    | Server Mode
+    |--------------------------------------------------------------------------
+    */
+
     'mode' => SWOOLE_PROCESS,
+
+    /*
+    |--------------------------------------------------------------------------
+    | Servers
+    |--------------------------------------------------------------------------
+    */
+
     'servers' => [
         [
             'name' => 'http',
@@ -20,6 +34,17 @@ return [
             ],
         ],
     ],
+
+    /*
+    |--------------------------------------------------------------------------
+    | Server Settings
+    |--------------------------------------------------------------------------
+    |
+    | Swoole server options passed directly to $server->set(). See:
+    | https://wiki.swoole.com/en/#/server/setting
+    |
+    */
+
     'settings' => [
         'document_root' => base_path('public'),
         'enable_static_handler' => true,
@@ -29,15 +54,27 @@ return [
         Constant::OPTION_OPEN_TCP_NODELAY => true,
         Constant::OPTION_MAX_COROUTINE => 100000,
         Constant::OPTION_OPEN_HTTP2_PROTOCOL => true,
-        Constant::OPTION_HTTP_COMPRESSION => (bool) env('SERVER_HTTP_COMPRESSION', false),
         Constant::OPTION_MAX_REQUEST => 100000,
         Constant::OPTION_MAX_WAIT_TIME => 3,
         Constant::OPTION_SOCKET_BUFFER_SIZE => 2 * 1024 * 1024,
         Constant::OPTION_BUFFER_OUTPUT_SIZE => 2 * 1024 * 1024,
+
+        // Disabled by default — when behind a reverse proxy (nginx), Swoole
+        // compression is wasted CPU since the proxy decompresses and
+        // re-compresses for the client. Enable for direct-to-client setups.
+        Constant::OPTION_HTTP_COMPRESSION => (bool) env('SERVER_HTTP_COMPRESSION', false),
     ],
+
+    /*
+    |--------------------------------------------------------------------------
+    | Server Callbacks
+    |--------------------------------------------------------------------------
+    */
+
     'callbacks' => [
         Event::ON_WORKER_START => [Hypervel\Core\Bootstrap\WorkerStartCallback::class, 'onWorkerStart'],
         Event::ON_PIPE_MESSAGE => [Hypervel\Core\Bootstrap\PipeMessageCallback::class, 'onPipeMessage'],
         Event::ON_WORKER_EXIT => [Hypervel\Core\Bootstrap\WorkerExitCallback::class, 'onWorkerExit'],
     ],
+
 ];
