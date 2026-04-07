@@ -13,12 +13,8 @@ jobs:
       fail-fast: true
       matrix:
         include:
-          - php: "8.2"
-            swoole: "5.1.6"
-          - php: "8.3"
-            swoole: "5.1.6"
           - php: "8.4"
-            swoole: "6.0"
+            swoole: "6.2.0"
 
     name: PHP ${{ matrix.php }} (swoole-${{ matrix.swoole }})
 
@@ -27,7 +23,20 @@ jobs:
 
     steps:
       - name: Checkout code
-        uses: actions/checkout@v4
+        uses: actions/checkout@v6
+
+      - name: Log trigger context
+        uses: ./.github/actions/log-trigger-context
+
+      - name: Setup PHP extensions
+        uses: ./.github/actions/setup-php
+
+      - name: Cache Composer dependencies
+        uses: actions/cache@v5
+        with:
+          path: /root/.composer/cache
+          key: composer-${{ matrix.php }}-${{ hashFiles('composer.lock') }}
+          restore-keys: composer-${{ matrix.php }}-
 
       - name: Install dependencies
         run: |
@@ -36,4 +45,4 @@ jobs:
       - name: Execute tests
         run: |
             PHP_CS_FIXER_IGNORE_ENV=1 vendor/bin/php-cs-fixer fix --dry-run --diff
-            vendor/bin/phpunit -c phpunit.xml.dist
+            vendor/bin/phpunit

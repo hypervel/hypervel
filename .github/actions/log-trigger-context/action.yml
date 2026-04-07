@@ -1,0 +1,27 @@
+name: Log trigger context
+description: Log the commit context that triggered this workflow run
+
+runs:
+  using: composite
+  steps:
+    - name: Log trigger context
+      shell: bash
+      env:
+        WORKFLOW_NAME: ${{ github.workflow }}
+        JOB_NAME: ${{ github.job }}
+        EVENT_NAME: ${{ github.event_name }}
+        REF_NAME: ${{ github.ref }}
+        TRIGGER_COMMIT_SHA: ${{ github.event.pull_request.head.sha || github.sha }}
+        PULL_REQUEST_HEAD_SHA: ${{ github.event.pull_request.head.sha || '' }}
+        WORKFLOW_SHA: ${{ github.sha }}
+      run: |
+        echo "Workflow: ${WORKFLOW_NAME}"
+        echo "Job: ${JOB_NAME}"
+        echo "Event: ${EVENT_NAME}"
+        echo "Ref: ${REF_NAME}"
+        echo "Trigger commit SHA: ${TRIGGER_COMMIT_SHA}"
+        echo "Workflow SHA: ${WORKFLOW_SHA}"
+
+        if [ -n "${PULL_REQUEST_HEAD_SHA}" ]; then
+          echo "Pull request head SHA: ${PULL_REQUEST_HEAD_SHA}"
+        fi
