@@ -58,7 +58,14 @@
             "@php artisan migrate --graceful --ansi"
         ],
         "post-autoload-dump": [
+            "Hypervel\\Foundation\\ComposerScripts::postAutoloadDump",
             "@php artisan package:discover --ansi"
+        ],
+        "post-update-cmd": [
+            "@php artisan vendor:publish --tag=hypervel-assets --ansi --force"
+        ],
+        "pre-package-uninstall": [
+            "Hypervel\\Foundation\\ComposerScripts::prePackageUninstall"
         ],
         "test": [
             "@php artisan config:clear --ansi",
