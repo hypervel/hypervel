@@ -1,69 +1,63 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
 
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Hypervel</title>
-    <style>
-        html,
-        body {
-            background-color: #fff;
-            color: #636b6f;
-            font-family: 'Nunito', sans-serif;
-            font-weight: 200;
-            height: 100vh;
-            margin: 0;
-        }
+    <title>{{ config('app.name', 'Hypervel') }}</title>
 
-        .full-height {
-            height: 100vh;
-        }
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.bunny.net">
+    <link href="https://fonts.bunny.net/css?family=instrument-sans:400,500,600" rel="stylesheet" />
 
-        .flex-center {
-            align-items: center;
-            display: flex;
-            justify-content: center;
-        }
+    <!-- Styles / Scripts -->
+    @if (file_exists(public_path('build/manifest.json')) || file_exists(public_path('hot')))
+        @vite(['resources/css/app.css', 'resources/js/app.js'])
+    @else
+        <style>
+            html,
+            body {
+                background-color: #fff;
+                color: #636b6f;
+                font-family: 'Instrument Sans', ui-sans-serif, system-ui, sans-serif;
+                font-weight: 200;
+                height: 100vh;
+                margin: 0;
+            }
 
-        .position-ref {
-            position: relative;
-        }
+            .flex-center {
+                align-items: center;
+                display: flex;
+                justify-content: center;
+                height: 100vh;
+            }
 
-        .top-right {
-            position: absolute;
-            right: 10px;
-            top: 18px;
-        }
+            .content {
+                text-align: center;
+            }
 
-        .content {
-            text-align: center;
-        }
+            .title {
+                font-size: 84px;
+                margin-bottom: 30px;
+            }
 
-        .title {
-            font-size: 84px;
-        }
-
-        .links>a {
-            color: #636b6f;
-            padding: 0 25px;
-            font-size: 13px;
-            font-weight: 600;
-            letter-spacing: .1rem;
-            text-decoration: none;
-            text-transform: uppercase;
-        }
-
-        .m-b-md {
-            margin-bottom: 30px;
-        }
-    </style>
+            .links > a {
+                color: #636b6f;
+                padding: 0 25px;
+                font-size: 13px;
+                font-weight: 600;
+                letter-spacing: .1rem;
+                text-decoration: none;
+                text-transform: uppercase;
+            }
+        </style>
+    @endif
 </head>
 
 <body>
-    <div class="flex-center position-ref full-height">
+    <div class="flex-center">
         <div class="content">
-            <div class="title m-b-md">
+            <div class="title">
                 Hypervel
             </div>
 
