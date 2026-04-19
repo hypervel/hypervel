@@ -15,6 +15,8 @@ return (new Config())
         '@Symfony' => true,
         '@DoctrineAnnotation' => true,
         '@PhpCsFixer' => true,
+        'php_unit_internal_class' => false,
+        'php_unit_test_class_requires_covers' => false,
         'phpdoc_no_alias_tag' => false,
         'array_syntax' => [
             'syntax' => 'short',
