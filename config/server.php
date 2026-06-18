@@ -47,7 +47,7 @@ return [
 
     'settings' => [
         'document_root' => base_path('public'),
-        'enable_static_handler' => true,
+        'enable_static_handler' => (bool) env('SERVER_STATIC_FILE_HANDLER', true),
         Constant::OPTION_ENABLE_COROUTINE => true,
         Constant::OPTION_WORKER_NUM => env('SERVER_WORKERS_NUMBER', swoole_cpu_num()),
         Constant::OPTION_PID_FILE => storage_path('framework/hypervel.pid'),
