@@ -7,6 +7,13 @@
 <a href="https://packagist.org/packages/hypervel/hypervel"><img src="https://img.shields.io/packagist/l/hypervel/hypervel" alt="License"></a>
 </p>
 
+> [!WARNING]
+> This branch contains the ongoing, unreleased work for the Hypervel 0.4 rewrite.
+>
+> Hypervel 0.4 is not ready for use yet. APIs, behavior, configuration, and package internals may change unexpectedly while the rewrite is still in progress.
+>
+> Please do not use this branch for projects until a beta release is tagged. If you are experimenting or testing the rewrite, bug reports and feedback are very welcome.
+
 ## Introduction
 
 **Hypervel** is a Laravel-style PHP framework with native coroutine support for ultra-high performance.
