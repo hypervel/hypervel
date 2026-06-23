@@ -21,7 +21,8 @@
         "mockery/mockery": "1.6.x-dev",
         "nunomaduro/collision": "^8.9",
         "phpstan/phpstan": "^2.0",
-        "phpunit/phpunit": "^13.0.3"
+        "phpunit/phpunit": "^13.0.3",
+        "swoole/ide-helper": "^6.0.2"
     },
     "autoload": {
         "psr-4": {
