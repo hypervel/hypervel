@@ -21,6 +21,17 @@ return [
 
     /*
     |--------------------------------------------------------------------------
+    | Database Connection Pools
+    |--------------------------------------------------------------------------
+    |
+    | Database connections may define a "pool" array for long-lived workers.
+    | Heartbeats validate idle connections, while max lifetime recycling
+    | rotates old idle connection generations before they are reused.
+    |
+    */
+
+    /*
+    |--------------------------------------------------------------------------
     | Database Connections
     |--------------------------------------------------------------------------
     |
@@ -68,8 +79,10 @@ return [
                 'max_connections' => (int) env('DB_MAX_CONNECTIONS', 10),
                 'connect_timeout' => 10.0,
                 'wait_timeout' => 3.0,
-                'heartbeat' => -1,
+                'heartbeat' => (float) env('DB_HEARTBEAT', -1),
+                'heartbeat_timeout' => (float) env('DB_HEARTBEAT_TIMEOUT', 1.0),
                 'max_idle_time' => (float) env('DB_MAX_IDLE_TIME', 60),
+                'max_lifetime' => (float) env('DB_MAX_LIFETIME', -1),
             ],
         ],
 
@@ -96,8 +109,10 @@ return [
                 'max_connections' => (int) env('DB_MAX_CONNECTIONS', 10),
                 'connect_timeout' => 10.0,
                 'wait_timeout' => 3.0,
-                'heartbeat' => -1,
+                'heartbeat' => (float) env('DB_HEARTBEAT', -1),
+                'heartbeat_timeout' => (float) env('DB_HEARTBEAT_TIMEOUT', 1.0),
                 'max_idle_time' => (float) env('DB_MAX_IDLE_TIME', 60),
+                'max_lifetime' => (float) env('DB_MAX_LIFETIME', -1),
             ],
         ],
 
@@ -122,8 +137,39 @@ return [
                 'max_connections' => (int) env('DB_MAX_CONNECTIONS', 10),
                 'connect_timeout' => 10.0,
                 'wait_timeout' => 3.0,
-                'heartbeat' => -1,
+                'heartbeat' => (float) env('DB_HEARTBEAT', -1),
+                'heartbeat_timeout' => (float) env('DB_HEARTBEAT_TIMEOUT', 1.0),
                 'max_idle_time' => (float) env('DB_MAX_IDLE_TIME', 60),
+                'max_lifetime' => (float) env('DB_MAX_LIFETIME', -1),
+            ],
+        ],
+
+        'pgsql-pooled' => [
+            'driver' => 'pgsql',
+            'url' => env('DB_POOLED_URL', env('DB_URL')),
+            'host' => env('DB_POOLED_HOST', env('DB_HOST', 'localhost')),
+            'port' => env('DB_POOLED_PORT', 6432),
+            'database' => env('DB_POOLED_DATABASE', env('DB_DATABASE', 'hypervel')),
+            'username' => env('DB_POOLED_USERNAME', env('DB_USERNAME', 'root')),
+            'password' => env('DB_POOLED_PASSWORD', env('DB_PASSWORD', '')),
+            'charset' => env('DB_CHARSET', 'utf8'),
+            'prefix' => env('DB_PREFIX', ''),
+            'prefix_indexes' => true,
+            'search_path' => 'public',
+            'sslmode' => env('DB_POOLED_SSLMODE', env('DB_SSLMODE', 'prefer')),
+            'options' => [
+                PDO::ATTR_EMULATE_PREPARES => true,
+            ],
+            'migrations_connection' => 'pgsql',
+            'pool' => [
+                'min_connections' => (int) env('DB_POOLED_MIN_CONNECTIONS', 1),
+                'max_connections' => (int) env('DB_POOLED_MAX_CONNECTIONS', 20),
+                'connect_timeout' => 10.0,
+                'wait_timeout' => 3.0,
+                'heartbeat' => (float) env('DB_POOLED_HEARTBEAT', -1),
+                'heartbeat_timeout' => (float) env('DB_POOLED_HEARTBEAT_TIMEOUT', 1.0),
+                'max_idle_time' => (float) env('DB_POOLED_MAX_IDLE_TIME', 60),
+                'max_lifetime' => (float) env('DB_POOLED_MAX_LIFETIME', -1),
             ],
         ],
     ],
