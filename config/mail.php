@@ -31,8 +31,8 @@ return [
     | your mailers below. You may also add additional mailers if needed.
     |
     | Supported: "smtp", "sendmail", "mailgun", "ses-v2",
-    |            "postmark", "resend", "log", "array",
-    |            "failover", "roundrobin"
+    |            "postmark", "resend", "cloudflare", "log",
+    |            "array", "failover", "roundrobin"
     |
     */
 
@@ -63,6 +63,10 @@ return [
 
         'resend' => [
             'transport' => 'resend',
+        ],
+
+        'cloudflare' => [
+            'transport' => 'cloudflare',
         ],
 
         'sendmail' => [
