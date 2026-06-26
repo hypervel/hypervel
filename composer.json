@@ -15,6 +15,7 @@
         "hypervel/framework": "^0.4"
     },
     "require-dev": {
+        "brianium/paratest": "^7.19",
         "fakerphp/faker": "^1.24",
         "friendsofphp/php-cs-fixer": "^3.57.2",
         "hypervel/watcher": "^0.4",
@@ -69,7 +70,7 @@
         ],
         "test": [
             "@php artisan config:clear --ansi",
-            "phpunit --colors=always"
+            "@php artisan test --ansi"
         ],
         "cs-diff": "php-cs-fixer fix --path-mode=intersection `git diff --name-only --diff-filter=ACMRTUXB origin/main..HEAD`",
         "cs-fix": "php-cs-fixer fix $1",
