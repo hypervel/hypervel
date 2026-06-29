@@ -27,8 +27,8 @@ return [
     | well as their drivers. You may even define multiple stores for the
     | same cache driver to group types of items stored in your caches.
     |
-    | Supported drivers: "array", "database", "file", "redis",
-    |                    "swoole", "stack", "session",
+    | Supported drivers: "array", "worker-array", "database", "file",
+    |                    "redis", "swoole", "stack", "session",
     |                    "failover", "null"
     |
     */
@@ -36,6 +36,11 @@ return [
     'stores' => [
         'array' => [
             'driver' => 'array',
+            'serialize' => false,
+        ],
+
+        'worker-array' => [
+            'driver' => 'worker-array',
             'serialize' => false,
         ],
 
