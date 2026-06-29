@@ -2,8 +2,6 @@
 
 declare(strict_types=1);
 
-use Hypervel\Support\Str;
-
 return [
     /*
     |--------------------------------------------------------------------------
@@ -127,10 +125,7 @@ return [
     |
     */
 
-    'cookie' => env(
-        'SESSION_COOKIE',
-        Str::slug(env('APP_NAME', 'hypervel'), '_') . '_session'
-    ),
+    'cookie' => env('SESSION_COOKIE', app_id() . '_session'),
 
     /*
     |--------------------------------------------------------------------------

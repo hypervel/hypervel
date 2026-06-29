@@ -22,6 +22,23 @@ return [
 
     /*
     |--------------------------------------------------------------------------
+    | Application ID
+    |--------------------------------------------------------------------------
+    |
+    | This value is the stable machine-readable identifier for your application.
+    | Framework config defaults will use it to isolate infrastructure names such
+    | as cache prefixes, Redis prefixes, and session cookie names.
+    |
+    | Warning: Do not edit this value directly in the config file. Set it with
+    | APP_ID because related config defaults call app_id() while configuration
+    | is loading; changing only this value can desynchronize infrastructure names.
+    |
+    */
+
+    'id' => app_id(),
+
+    /*
+    |--------------------------------------------------------------------------
     | Application Environment
     |--------------------------------------------------------------------------
     |

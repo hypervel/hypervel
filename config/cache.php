@@ -3,7 +3,6 @@
 declare(strict_types=1);
 
 use Hypervel\Cache\SwooleStore;
-use Hypervel\Support\Str;
 
 return [
     /*
@@ -121,5 +120,5 @@ return [
     |
     */
 
-    'prefix' => env('CACHE_PREFIX', Str::slug((string) env('APP_NAME', 'hypervel')) . '-cache-'),
+    'prefix' => env('CACHE_PREFIX', app_id() . '_cache:'),
 ];
