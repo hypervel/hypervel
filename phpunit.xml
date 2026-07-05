@@ -17,6 +17,9 @@
             <directory>app</directory>
         </include>
     </source>
+    <extensions>
+        <bootstrap class="Hypervel\Testing\PHPUnit\AfterEachTestExtension" />
+    </extensions>
     <php>
         <env name="APP_ENV" value="testing"/>
         <env name="APP_MAINTENANCE_DRIVER" value="file"/>

@@ -46,7 +46,10 @@
     },
     "extra": {
         "hypervel": {
-            "dont-discover": []
+            "dont-discover": [],
+            "test-state": [
+                "Tests\\Support\\TestState"
+            ]
         }
     },
     "scripts": {
