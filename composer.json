@@ -71,6 +71,10 @@
         "pre-package-uninstall": [
             "Hypervel\\Foundation\\ComposerScripts::prePackageUninstall"
         ],
+        "dev": [
+            "Composer\\Config::disableProcessTimeout",
+            "@php artisan dev"
+        ],
         "test": [
             "@php artisan config:clear --ansi",
             "@php artisan test --ansi"
