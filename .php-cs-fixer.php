@@ -7,7 +7,7 @@ use PhpCsFixer\Runner\Parallel\ParallelConfig;
 
 $maxProcesses = function_exists('swoole_cpu_num') ? swoole_cpu_num() : 4;
 
-return (new Config())
+return (new Config)
     ->setParallelConfig(new ParallelConfig($maxProcesses))
     ->setRiskyAllowed(true)
     ->setRules([
@@ -83,6 +83,9 @@ return (new Config())
         ],
         'phpdoc_to_comment' => [
             'ignored_tags' => ['var'],
+        ],
+        'return_assignment' => [
+            'skip_named_var_tags' => true,
         ],
         'php_unit_method_casing' => [
             'case' => 'snake_case',
