@@ -48,6 +48,10 @@ return [
             'prune_interval' => 60, // seconds
         ],
 
+        // Do not use worker-array for application rate limiting. Its state is not
+        // shared across workers or servers, and expired unused keys remain in
+        // memory until the worker exits. Applications should select it only for
+        // automated tests.
         'worker-array' => [
             'driver' => 'worker-array',
         ],
