@@ -3,6 +3,7 @@
 
 declare(strict_types=1);
 
+use Hypervel\Console\Application as ConsoleApplication;
 use Hypervel\Foundation\Application;
 use Symfony\Component\Console\Input\ArgvInput;
 
@@ -21,7 +22,7 @@ require BASE_PATH . '/vendor/autoload.php';
 $httpBootstrapCommands = ['serve', 'watch'];
 $input = new ArgvInput;
 
-if (in_array($input->getFirstArgument(), $httpBootstrapCommands, true)) {
+if (in_array(ConsoleApplication::resolveCommandName($input), $httpBootstrapCommands, true)) {
     putenv('APP_RUNNING_IN_CONSOLE=false');
     $_ENV['APP_RUNNING_IN_CONSOLE'] = 'false';
     $_SERVER['APP_RUNNING_IN_CONSOLE'] = 'false';
