@@ -6,8 +6,6 @@ declare(strict_types=1);
 use Hypervel\Foundation\Application;
 use Symfony\Component\Console\Input\ArgvInput;
 
-define('HYPERVEL_START', microtime(true));
-
 ini_set('display_errors', 'on');
 ini_set('display_startup_errors', 'on');
 ini_set('memory_limit', '1G');
@@ -21,8 +19,9 @@ require BASE_PATH . '/vendor/autoload.php';
 ! defined('SWOOLE_HOOK_FLAGS') && define('SWOOLE_HOOK_FLAGS', SWOOLE_HOOK_ALL);
 
 $httpBootstrapCommands = ['serve', 'watch'];
+$input = new ArgvInput;
 
-if (in_array($_SERVER['argv'][1] ?? null, $httpBootstrapCommands, true)) {
+if (in_array($input->getFirstArgument(), $httpBootstrapCommands, true)) {
     putenv('APP_RUNNING_IN_CONSOLE=false');
     $_ENV['APP_RUNNING_IN_CONSOLE'] = 'false';
     $_SERVER['APP_RUNNING_IN_CONSOLE'] = 'false';
@@ -31,6 +30,6 @@ if (in_array($_SERVER['argv'][1] ?? null, $httpBootstrapCommands, true)) {
 /** @var Application $app */
 $app = require BASE_PATH . '/bootstrap/app.php';
 
-$status = $app->handleCommand(new ArgvInput());
+$status = $app->handleCommand($input);
 
 exit($status);
