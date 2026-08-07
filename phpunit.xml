@@ -38,5 +38,15 @@
         <env name="RATE_LIMITER_STORE" value="worker-array"/>
         <env name="SESSION_DRIVER" value="array"/>
         <env name="TELESCOPE_ENABLED" value="false"/>
+        <!--
+            Pin terminal dimensions so Symfony Console never shells out to `stty`
+            to detect them. Each test runs console output inside a Swoole coroutine
+            with SWOOLE_HOOK_ALL, which hooks proc_open/proc_close; under ParaTest's
+            concurrent worker processes that hooked subprocess wait can deadlock in
+            the reactor (SIGCHLD/child-reaping race), hanging an arbitrary test.
+            A headless test runner has no real terminal anyway.
+        -->
+        <env name="COLUMNS" value="80" force="true"/>
+        <env name="LINES" value="24" force="true"/>
     </php>
 </phpunit>
