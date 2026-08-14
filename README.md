@@ -117,14 +117,14 @@ The Hypervel framework is open-sourced software licensed under the [MIT license]
     <tr>
         <td align="center">
             <a href="https://github.com/albertcht">
-                <img src="https://github.com/albertcht.png?size=120" width="120" alt="Albert Chen">
+                <img src="https://github.com/albertcht.png?size=96" width="96" alt="Albert Chen">
                 <br>
                 <sub><b>Albert Chen</b></sub>
             </a>
         </td>
         <td align="center">
             <a href="https://github.com/binaryfire">
-                <img src="https://github.com/binaryfire.png?size=120" width="120" alt="Raj Siva-Rajah">
+                <img src="https://github.com/binaryfire.png?size=96" width="96" alt="Raj Siva-Rajah">
                 <br>
                 <sub><b>Raj Siva-Rajah</b></sub>
             </a>
