@@ -8,7 +8,7 @@
         "laravel",
         "hypervel"
     ],
-    "description": "A Laravel-style PHP framework with native coroutine support for ultra-high performance.",
+    "description": "The application skeleton for the Hypervel framework.",
     "license": "MIT",
     "require": {
         "php": ">=8.4",

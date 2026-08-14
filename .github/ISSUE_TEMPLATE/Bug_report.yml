@@ -1,9 +1,9 @@
 name: Bug Report
-description: "Only report the bug of the framework skeleton here. For bugs in the framework, you should click the link below:"
+description: "Report a problem with the Hypervel application skeleton. For framework bugs, use the components repository."
 body:
   - type: markdown
     attributes:
-      value: "Please read [our full contribution guide](https://hypervel.org/docs/contributions#bug-reports) before submitting bug reports. If you notice improper DocBlock, PHPStan, or IDE warnings while using Hypervel, do not create a GitHub issue. Instead, please submit a pull request to fix the problem."
+      value: "Use this form only for problems with the application skeleton's default files, configuration, or starter code. Report framework bugs through the [components repository](https://github.com/hypervel/components/issues). Please also read the [contribution guide](https://github.com/hypervel/components/blob/0.4/src/docs/contributions.md) before submitting a bug report."
   - type: input
     attributes:
       label: PHP Version
@@ -15,7 +15,7 @@ body:
     attributes:
       label: Swoole Extension Version
       description: Provide the Swoole extension version that you are using (You can get it by running `php --ri swoole`).
-      placeholder: 5.1.6
+      placeholder: 6.2.2
     validations:
       required: true
   - type: input
