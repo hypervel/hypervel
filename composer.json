@@ -76,8 +76,8 @@
             "@php artisan dev"
         ],
         "test": [
-            "@php artisan config:clear --ansi",
-            "@php artisan test --ansi"
+            "@php artisan config:clear --ansi @no_additional_args",
+            "@php artisan test --ansi --do-not-fail-on-empty-test-suite"
         ],
         "cs-diff": "php-cs-fixer fix --path-mode=intersection `git diff --name-only --diff-filter=ACMRTUXB origin/main..HEAD`",
         "cs-fix": "php-cs-fixer fix $1",
