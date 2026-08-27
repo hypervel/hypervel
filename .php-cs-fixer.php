@@ -110,6 +110,7 @@ return (new Config)
     ])
     ->setFinder(
         PhpCsFixer\Finder::create()
+            ->exclude('bootstrap/cache')
             ->exclude('public')
             ->exclude('storage')
             ->exclude('vendor')
