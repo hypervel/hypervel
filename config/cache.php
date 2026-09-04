@@ -20,6 +20,18 @@ return [
 
     /*
     |--------------------------------------------------------------------------
+    | Schedule Cache Store
+    |--------------------------------------------------------------------------
+    |
+    | This store coordinates scheduled tasks across processes and servers.
+    | Set it to null to use the default cache store.
+    |
+    */
+
+    'schedule_store' => env('SCHEDULE_CACHE_STORE'),
+
+    /*
+    |--------------------------------------------------------------------------
     | Cache Stores
     |--------------------------------------------------------------------------
     |
@@ -28,8 +40,18 @@ return [
     | same cache driver to group types of items stored in your caches.
     |
     | Supported drivers: "array", "worker-array", "database", "file",
-    |                    "redis", "swoole", "stack", "session",
+    |                    "storage", "redis", "swoole", "stack", "session",
     |                    "failover", "null"
+    |
+    | Database, storage, and Redis stores may define a store-specific prefix;
+    | omission or null inherits the global cache prefix. Nullable connection,
+    | lock connection, and disk values select their manager's default.
+    |
+    | File stores use the operating system's permissions unless "permission"
+    | sets one mode for cache files and generated directories. Cache repository
+    | events are enabled by default; setting "events" to false disables them
+    | for a store. The failover repository disables its outer events because
+    | its backing stores dispatch them.
     |
     */
 
@@ -65,10 +87,16 @@ return [
             'lock_path' => storage_path('framework/cache/data'),
         ],
 
+        'storage' => [
+            'driver' => 'storage',
+            'disk' => env('CACHE_STORAGE_DISK'),
+            'path' => env('CACHE_STORAGE_PATH', 'framework/cache/data'),
+        ],
+
         'redis' => [
             'driver' => 'redis',
             'connection' => env('REDIS_CACHE_CONNECTION', 'cache'),
-            'tag_mode' => env('REDIS_CACHE_TAG_MODE', 'all'), // Redis 8.0+ and PhpRedis 6.3.0+ required for 'any'
+            'tag_mode' => env('REDIS_CACHE_TAG_MODE', 'all'), // 'any' requires PhpRedis 6.3.0+ with Redis 8.0+ or Valkey 9.0+.
             'lock_connection' => env('REDIS_CACHE_LOCK_CONNECTION', 'cache'),
         ],
 
@@ -79,6 +107,7 @@ return [
             'eviction_policy' => SwooleStore::EVICTION_POLICY_LRU,
             'eviction_proportion' => 0.05,
             'eviction_interval' => 10000, // milliseconds
+            'interval_refresh_interval' => 1000, // milliseconds
         ],
 
         'stack' => [
@@ -99,6 +128,23 @@ return [
             ],
         ],
     ],
+
+    /*
+    |--------------------------------------------------------------------------
+    | Serializable Classes
+    |--------------------------------------------------------------------------
+    |
+    | This global value determines the classes that PHP cache stores may
+    | unserialize. False allows only classes contributed by framework, package,
+    | and application providers; an array also allows the classes listed here;
+    | null or true allows every class. False is the secure default because
+    | unserializing arbitrary classes can expose gadget chains when cache
+    | payloads are forged. Native PhpRedis serializers handle deserialization
+    | themselves, so this policy does not apply to those connections.
+    |
+    */
+
+    'serializable_classes' => false,
 
     /*
     |--------------------------------------------------------------------------

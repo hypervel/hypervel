@@ -7,6 +7,9 @@ use Monolog\Handler\StreamHandler;
 use Monolog\Handler\SyslogUdpHandler;
 use Monolog\Processor\PsrLogMessageProcessor;
 
+$papertrailPort = env('PAPERTRAIL_PORT');
+$papertrailPort = $papertrailPort === null ? null : (int) $papertrailPort;
+
 return [
     /*
     |--------------------------------------------------------------------------
@@ -29,12 +32,15 @@ return [
     | This option controls the log channel that should be used to log warnings
     | regarding deprecated PHP and library features. This allows you to get
     | your application ready for upcoming major versions of dependencies.
+    | Omitting the channel or setting it to null uses the null logger. An
+    | omitted trace setting disables stack traces; Testbench enables them so
+    | deprecation call sites remain visible during tests.
     |
     */
 
     'deprecations' => [
         'channel' => env('LOG_DEPRECATIONS_CHANNEL', 'null'),
-        'trace' => env('LOG_DEPRECATIONS_TRACE', false),
+        'trace' => (bool) env('LOG_DEPRECATIONS_TRACE', false),
     ],
 
     /*
@@ -49,6 +55,11 @@ return [
     | Available drivers: "single", "daily", "slack", "syslog",
     |                    "errorlog", "monolog", "custom", "stack"
     |
+    | Built-in channel records below declare their driver-specific settings.
+    | Any channel may also set a custom "name", a "tap" list, or optional
+    | formatter and action-level settings. A null file permission uses the
+    | operating system's default permissions.
+    |
     */
 
     'channels' => [
@@ -62,6 +73,7 @@ return [
             'driver' => 'single',
             'path' => storage_path('logs/hypervel.log'),
             'level' => env('LOG_LEVEL', 'debug'),
+            'permission' => null,
             'replace_placeholders' => true,
         ],
 
@@ -69,7 +81,8 @@ return [
             'driver' => 'daily',
             'path' => storage_path('logs/hypervel.log'),
             'level' => env('LOG_LEVEL', 'debug'),
-            'days' => env('LOG_DAILY_DAYS', 14),
+            'days' => (int) env('LOG_DAILY_DAYS', 14),
+            'permission' => null,
             'replace_placeholders' => true,
         ],
 
@@ -78,7 +91,9 @@ return [
             'url' => env('LOG_SLACK_WEBHOOK_URL'),
             'username' => env('LOG_SLACK_USERNAME', env('APP_NAME', 'Hypervel')),
             'emoji' => env('LOG_SLACK_EMOJI', ':boom:'),
+            'context' => true,
             'level' => env('LOG_LEVEL', 'critical'),
+            'exclude_fields' => [],
             'replace_placeholders' => true,
         ],
 
@@ -88,8 +103,8 @@ return [
             'handler' => env('LOG_PAPERTRAIL_HANDLER', SyslogUdpHandler::class),
             'handler_with' => [
                 'host' => env('PAPERTRAIL_URL'),
-                'port' => env('PAPERTRAIL_PORT'),
-                'connectionString' => 'tls://' . env('PAPERTRAIL_URL') . ':' . env('PAPERTRAIL_PORT'),
+                'port' => $papertrailPort,
+                'connectionString' => 'tls://' . env('PAPERTRAIL_URL') . ':' . $papertrailPort,
             ],
             'processors' => [PsrLogMessageProcessor::class],
         ],

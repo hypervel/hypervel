@@ -2,6 +2,8 @@
 
 declare(strict_types=1);
 
+$bcryptLimit = env('BCRYPT_LIMIT');
+
 return [
     /*
     |--------------------------------------------------------------------------
@@ -16,7 +18,7 @@ return [
     |
     */
 
-    'driver' => 'bcrypt',
+    'driver' => env('HASH_DRIVER', 'bcrypt'),
 
     /*
     |--------------------------------------------------------------------------
@@ -30,7 +32,9 @@ return [
     */
 
     'bcrypt' => [
-        'rounds' => env('BCRYPT_ROUNDS', 10),
+        'rounds' => (int) env('BCRYPT_ROUNDS', 12),
+        'verify' => (bool) env('HASH_VERIFY', true),
+        'limit' => $bcryptLimit === null ? null : (int) $bcryptLimit,
     ],
 
     /*
@@ -45,8 +49,22 @@ return [
     */
 
     'argon' => [
-        'memory' => 65536,
-        'threads' => 1,
-        'time' => 4,
+        'memory' => (int) env('ARGON_MEMORY', 65536),
+        'threads' => (int) env('ARGON_THREADS', 1),
+        'time' => (int) env('ARGON_TIME', 4),
+        'verify' => (bool) env('HASH_VERIFY', true),
     ],
+
+    /*
+    |--------------------------------------------------------------------------
+    | Rehash On Login
+    |--------------------------------------------------------------------------
+    |
+    | Setting this option to true will tell Hypervel to automatically rehash
+    | the user's password during login if the configured work factor for
+    | the algorithm has changed, allowing graceful upgrades of hashes.
+    |
+    */
+
+    'rehash_on_login' => true,
 ];

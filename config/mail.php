@@ -30,9 +30,14 @@ return [
     | when delivering an email. You may specify which one you're using for
     | your mailers below. You may also add additional mailers if needed.
     |
-    | Supported: "smtp", "sendmail", "mailgun", "ses-v2",
-    |            "postmark", "resend", "cloudflare", "log",
-    |            "array", "failover", "roundrobin"
+    | Supported: "smtp", "sendmail", "mail", "mailgun",
+    |            "ses-v2", "postmark", "resend", "cloudflare",
+    |            "log", "array", "failover", "roundrobin"
+    |
+    | A null SMTP scheme is inferred from its port, while a null timeout leaves
+    | the transport default unchanged. A null log channel uses the default log
+    | channel. Poolable named transports use the shared pool defaults; set
+    | "pool" to false to disable pooling or provide an array of pool options.
     |
     */
 
@@ -42,7 +47,7 @@ return [
             'scheme' => env('MAIL_SCHEME'),
             'url' => env('MAIL_URL'),
             'host' => env('MAIL_HOST', '127.0.0.1'),
-            'port' => env('MAIL_PORT', 2525),
+            'port' => (int) env('MAIL_PORT', 2525),
             'username' => env('MAIL_USERNAME'),
             'password' => env('MAIL_PASSWORD'),
             'timeout' => null,

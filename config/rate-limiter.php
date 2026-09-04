@@ -23,6 +23,8 @@ return [
     |
     | Here you may configure the stores used to hold rate limiter state. Each
     | store performs its decisions atomically using its native primitives.
+    | Database stores may omit "connection" or set it to null to use the
+    | default database connection.
     |
     | Supported drivers: "database", "redis", "swoole", "worker-array"
     |

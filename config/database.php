@@ -2,6 +2,8 @@
 
 declare(strict_types=1);
 
+use Pdo\Mysql;
+
 return [
     /*
     |--------------------------------------------------------------------------
@@ -36,6 +38,9 @@ return [
     | Below are all of the database connections defined for your application.
     | An example configuration is provided for each database system which
     | is supported by Hypervel. You're free to add / remove connections.
+    | A connection may set "migrations_connection" to route migrations
+    | through another named connection. When omitted, migrations use the
+    | selected connection itself.
     |
     */
 
@@ -46,7 +51,7 @@ return [
             'database' => env('DB_DATABASE', database_path('database.sqlite')),
             'prefix' => '',
             'prefix_indexes' => null,
-            'foreign_key_constraints' => env('DB_FOREIGN_KEYS', true),
+            'foreign_key_constraints' => (bool) env('DB_FOREIGN_KEYS', true),
             'busy_timeout' => null,
             'journal_mode' => null,
             'synchronous' => null,
@@ -58,7 +63,7 @@ return [
             'driver' => 'mysql',
             'url' => env('DB_URL'),
             'host' => env('DB_HOST', 'localhost'),
-            'port' => env('DB_PORT', 3306),
+            'port' => (int) env('DB_PORT', 3306),
             'database' => env('DB_DATABASE', 'hypervel'),
             'username' => env('DB_USERNAME', 'root'),
             'password' => env('DB_PASSWORD', ''),
@@ -70,7 +75,7 @@ return [
             'strict' => true,
             'engine' => null,
             'options' => extension_loaded('pdo_mysql') ? array_filter([
-                (PHP_VERSION_ID >= 80500 ? Pdo\Mysql::ATTR_SSL_CA : PDO::MYSQL_ATTR_SSL_CA) => env('MYSQL_ATTR_SSL_CA'),
+                Mysql::ATTR_SSL_CA => env('MYSQL_ATTR_SSL_CA'),
             ]) : [],
             'pool' => [
                 'min_connections' => (int) env('DB_MIN_CONNECTIONS', 1),
@@ -88,7 +93,7 @@ return [
             'driver' => 'mariadb',
             'url' => env('DB_URL'),
             'host' => env('DB_HOST', 'localhost'),
-            'port' => env('DB_PORT', 3306),
+            'port' => (int) env('DB_PORT', 3306),
             'database' => env('DB_DATABASE', 'hypervel'),
             'username' => env('DB_USERNAME', 'root'),
             'password' => env('DB_PASSWORD', ''),
@@ -100,7 +105,7 @@ return [
             'strict' => true,
             'engine' => null,
             'options' => extension_loaded('pdo_mysql') ? array_filter([
-                (PHP_VERSION_ID >= 80500 ? Pdo\Mysql::ATTR_SSL_CA : PDO::MYSQL_ATTR_SSL_CA) => env('MYSQL_ATTR_SSL_CA'),
+                Mysql::ATTR_SSL_CA => env('MYSQL_ATTR_SSL_CA'),
             ]) : [],
             'pool' => [
                 'min_connections' => (int) env('DB_MIN_CONNECTIONS', 1),
@@ -118,7 +123,7 @@ return [
             'driver' => 'pgsql',
             'url' => env('DB_URL'),
             'host' => env('DB_HOST', 'localhost'),
-            'port' => env('DB_PORT', 5432),
+            'port' => (int) env('DB_PORT', 5432),
             'database' => env('DB_DATABASE', 'hypervel'),
             'username' => env('DB_USERNAME', 'root'),
             'password' => env('DB_PASSWORD', ''),
@@ -146,7 +151,7 @@ return [
             'driver' => 'pgsql',
             'url' => env('DB_POOLED_URL', env('DB_URL')),
             'host' => env('DB_POOLED_HOST', env('DB_HOST', 'localhost')),
-            'port' => env('DB_POOLED_PORT', 6432),
+            'port' => (int) env('DB_POOLED_PORT', 6432),
             'database' => env('DB_POOLED_DATABASE', env('DB_DATABASE', 'hypervel')),
             'username' => env('DB_POOLED_USERNAME', env('DB_USERNAME', 'root')),
             'password' => env('DB_POOLED_PASSWORD', env('DB_PASSWORD', '')),
@@ -180,6 +185,8 @@ return [
     | This table keeps track of all the migrations that have already run for
     | your application. Using this information, we can determine which of
     | the migrations on disk haven't actually been run on the database.
+    | Omitting update_date_on_publish leaves published migration timestamps
+    | unchanged.
     |
     */
 
@@ -195,7 +202,10 @@ return [
     |
     | Redis is an open source, fast, and advanced key-value store that also
     | provides a richer body of commands than a typical key-value system
-    | such as Memcached. You may define your connection settings here.
+    | such as Memcached. Advanced transport, connection and read timeouts,
+    | retry and backoff settings, client name, stream context, per-connection
+    | options, prefix, and command event settings may be added when needed.
+    | The Redis documentation describes these optional settings.
     |
     */
 

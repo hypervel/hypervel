@@ -65,6 +65,19 @@ return [
 
     /*
     |--------------------------------------------------------------------------
+    | Source Editor
+    |--------------------------------------------------------------------------
+    |
+    | This setting controls clickable source links on development exception
+    | pages. Set it to an editor name or an array of editor options. Omit this
+    | option or set it to null to disable source links.
+    |
+    */
+
+    // 'editor' => 'vscode',
+
+    /*
+    |--------------------------------------------------------------------------
     | Stdout Log Configuration
     |--------------------------------------------------------------------------
     |
@@ -122,9 +135,15 @@ return [
     | Application URL
     |--------------------------------------------------------------------------
     |
-    | This URL is used by the console to properly generate URLs when using
-    | the Artisan command line tool. You should set this to the root of
-    | the application so that it's available within Artisan commands.
+    | This URL is used whenever Hypervel needs to know the root of your
+    | application: generating URLs in console commands, queued jobs, and
+    | mail, and deriving trusted host patterns for incoming requests. You
+    | should set this to the root of your application.
+    |
+    | Set this to null only when the application has no canonical URL.
+    | Features that support a missing URL use their documented behavior,
+    | while features that require an absolute URL fail until a URL is
+    | configured.
     |
     */
 
@@ -143,11 +162,15 @@ return [
     |
     | Here you may specify the default timezone for your application, which
     | will be used by the PHP date and date-time functions. The timezone
-    | is set to "UTC" by default as it is suitable for most use cases.
+    | is set to "UTC" by default as it is suitable for most use cases. You may
+    | specify a separate default timezone for scheduled tasks. When omitted,
+    | scheduled tasks use the application timezone.
     |
     */
 
     'timezone' => env('APP_TIMEZONE', 'UTC'),
+
+    // 'schedule_timezone' => 'America/Chicago',
 
     /*
     |--------------------------------------------------------------------------
