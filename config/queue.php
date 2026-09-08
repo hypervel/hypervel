@@ -92,8 +92,8 @@ return [
                 'max_objects' => 10,
                 'wait_timeout' => 3.0,
                 'max_lifetime' => 60.0,
-                'max_idle_time' => 0.0,
-                'idle_ttl' => 300.0,
+                'max_idle_time' => null,
+                'pool_idle_timeout' => 300.0,
             ],
         ],
 
@@ -119,8 +119,8 @@ return [
                 'max_objects' => 10,
                 'wait_timeout' => 3.0,
                 'max_lifetime' => 60.0,
-                'max_idle_time' => 0.0,
-                'idle_ttl' => 300.0,
+                'max_idle_time' => null,
+                'pool_idle_timeout' => 300.0,
             ],
         ],
 
