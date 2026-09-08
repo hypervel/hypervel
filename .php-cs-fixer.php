@@ -74,6 +74,8 @@ return (new Config)
         'lowercase_static_reference' => true,
         'no_useless_else' => true,
         'no_unused_imports' => true,
+        // Preserve Laravel-style placeholders in the application skeleton.
+        'no_empty_comment' => false,
         'not_operator_with_successor_space' => true,
         'not_operator_with_space' => false,
         'ordered_class_elements' => [
