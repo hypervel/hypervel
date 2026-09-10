@@ -15,8 +15,9 @@ return new class extends Migration {
         Schema::create('jobs', function (Blueprint $table) {
             $table->id();
             $table->string('queue')->index();
-            $table->jsonb('payload');
-            $table->unsignedTinyInteger('attempts');
+            // Preserve raw payloads without JSON validation or normalization.
+            $table->longText('payload');
+            $table->unsignedSmallInteger('attempts');
             $table->unsignedInteger('reserved_at')->nullable();
             $table->unsignedInteger('available_at');
             $table->unsignedInteger('created_at');

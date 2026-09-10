@@ -14,12 +14,16 @@ return new class extends Migration {
     {
         Schema::create('failed_jobs', function (Blueprint $table) {
             $table->id();
-            $table->uuid()->unique();
-            $table->text('connection');
-            $table->text('queue');
-            $table->jsonb('payload');
+            // Payloads may supply identifiers that are not UUIDs.
+            $table->string('uuid')->unique();
+            $table->string('connection');
+            $table->string('queue');
+            // Failed jobs include malformed payloads; keep their original bytes.
+            $table->longText('payload');
             $table->longText('exception');
             $table->timestamp('failed_at')->useCurrent();
+
+            $table->index(['connection', 'queue', 'failed_at']);
         });
     }
 
