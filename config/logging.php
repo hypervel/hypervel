@@ -81,7 +81,16 @@ return [
             'driver' => 'daily',
             'path' => storage_path('logs/hypervel.log'),
             'level' => env('LOG_LEVEL', 'debug'),
-            'days' => (int) env('LOG_DAILY_DAYS', 14),
+            'max_files' => (int) env('LOG_DAILY_DAYS', 14),
+            'permission' => null,
+            'replace_placeholders' => true,
+        ],
+
+        'monthly' => [
+            'driver' => 'monthly',
+            'path' => storage_path('logs/hypervel.log'),
+            'level' => env('LOG_LEVEL', 'debug'),
+            'max_files' => 3,
             'permission' => null,
             'replace_placeholders' => true,
         ],
