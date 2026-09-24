@@ -25,7 +25,7 @@ return [
 
     'cloudflare' => [
         'account_id' => env('CLOUDFLARE_ACCOUNT_ID'),
-        'token' => env('CLOUDFLARE_TOKEN'),
+        'key' => env('CLOUDFLARE_KEY'),
     ],
 
     'ses' => [

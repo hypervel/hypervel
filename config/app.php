@@ -2,8 +2,6 @@
 
 declare(strict_types=1);
 
-use Hypervel\Support\Facades\Facade;
-use Hypervel\Support\ServiceProvider;
 use Psr\Log\LogLevel;
 
 return [
@@ -242,39 +240,4 @@ return [
         'store' => env('APP_MAINTENANCE_STORE', 'database'),
         'refresh_interval' => (int) env('APP_MAINTENANCE_REFRESH_INTERVAL', 5),
     ],
-
-    /*
-    |--------------------------------------------------------------------------
-    | Autoloaded Service Providers
-    |--------------------------------------------------------------------------
-    |
-    | The service providers listed here will be automatically loaded on any
-    | requests to your application. You may add your own services to the
-    | arrays below to provide additional features to this application.
-    |
-    */
-
-    'providers' => ServiceProvider::defaultProviders()->merge([
-        // Package Service Providers...
-    ])->merge([
-        // Application Service Providers...
-        // App\Providers\AppServiceProvider::class,
-    ])->merge([
-        // Added Service Providers (Do not remove this line)...
-    ])->toArray(),
-
-    /*
-    |--------------------------------------------------------------------------
-    | Class Aliases
-    |--------------------------------------------------------------------------
-    |
-    | This array of class aliases will be registered when this application
-    | is started. You may add any additional class aliases which should
-    | be loaded to the array. For speed, all aliases are lazy loaded.
-    |
-    */
-
-    'aliases' => Facade::defaultAliases()->merge([
-        // 'Example' => App\Facades\Example::class,
-    ])->toArray(),
 ];
