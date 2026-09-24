@@ -166,7 +166,7 @@ return [
     |
     */
 
-    'timezone' => env('APP_TIMEZONE', 'UTC'),
+    'timezone' => 'UTC',
 
     // 'schedule_timezone' => 'America/Chicago',
 
@@ -182,6 +182,17 @@ return [
     */
 
     'locale' => env('APP_LOCALE', 'en'),
+
+    /*
+    |--------------------------------------------------------------------------
+    | Application Fallback Locale
+    |--------------------------------------------------------------------------
+    |
+    | The fallback locale determines the locale to use when the default one
+    | is not available. You may change the value to correspond to any of
+    | the languages which are currently supported by your application.
+    |
+    */
 
     'fallback_locale' => env('APP_FALLBACK_LOCALE', 'en'),
 
