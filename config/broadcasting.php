@@ -16,7 +16,8 @@ return [
     |
     */
 
-    'default' => env('BROADCAST_CONNECTION', 'null'),
+    // BROADCAST_CONNECTION=null reads as PHP null, so it falls back like an unset value.
+    'default' => env('BROADCAST_CONNECTION') ?? 'null',
 
     /*
     |--------------------------------------------------------------------------
