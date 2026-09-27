@@ -10,5 +10,5 @@ contact_links:
     url: https://github.com/hypervel/components/discussions
     about: 'For support questions and other help, start a discussion in the components repository.'
   - name: Documentation Issues
-    url: https://github.com/hypervel/hypervel.org
-    about: For documentation issues, open a pull request at the hypervel.org repository.
+    url: https://github.com/hypervel/components/blob/0.4/src/docs/contributions.md#pull-request-requirements
+    about: For documentation issues, please open a pull request in the components repository.
