@@ -4,12 +4,14 @@ declare(strict_types=1);
 
 namespace App\Models;
 
+use Database\Factories\UserFactory;
 use Hypervel\Database\Eloquent\Factories\HasFactory;
 use Hypervel\Foundation\Auth\User as Authenticatable;
 use Hypervel\Notifications\Notifiable;
 
 class User extends Authenticatable
 {
+    /** @use HasFactory<UserFactory> */
     use HasFactory;
     use Notifiable;
 

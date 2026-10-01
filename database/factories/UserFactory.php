@@ -26,11 +26,16 @@ class UserFactory extends Factory
      */
     public function definition(): array
     {
+        // Rehash when an earlier application, such as a previous test, used different hashing settings.
+        if (! isset(static::$password) || Hash::needsRehash(static::$password)) {
+            static::$password = Hash::make('password');
+        }
+
         return [
             'name' => fake()->name(),
             'email' => fake()->unique()->safeEmail(),
             'email_verified_at' => now(),
-            'password' => static::$password ??= Hash::make('password'),
+            'password' => static::$password,
             'remember_token' => Str::random(10),
         ];
     }
