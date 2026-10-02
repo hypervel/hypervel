@@ -11,7 +11,7 @@
     "description": "The application skeleton for the Hypervel framework.",
     "license": "MIT",
     "require": {
-        "php": ">=8.4",
+        "php": "^8.4",
         "hypervel/framework": "^0.4"
     },
     "require-dev": {
