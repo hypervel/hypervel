@@ -86,9 +86,8 @@ return (new Config)
         'phpdoc_to_comment' => [
             'ignored_tags' => ['var'],
         ],
-        'return_assignment' => [
-            'skip_named_var_tags' => true,
-        ],
+        // This rewrite removes assignments captured by reference in nested closures.
+        'return_assignment' => false,
         'php_unit_method_casing' => [
             'case' => 'snake_case',
         ],
