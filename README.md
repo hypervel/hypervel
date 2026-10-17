@@ -12,15 +12,15 @@
 >
 > Hypervel 0.4 is not ready for use yet. APIs, behavior, configuration, and package internals may change unexpectedly while the rewrite is still in progress.
 >
-> The published documentation at [hypervel.org/docs](https://hypervel.org/docs) currently covers Hypervel 0.3. If you are experimenting with this branch, use the [in-progress 0.4 documentation](https://github.com/hypervel/components/tree/0.4/src/docs). If you are coming from Laravel, begin with the [porting guide](https://github.com/hypervel/components/blob/0.4/src/docs/porting-from-laravel.md).
+> If you are experimenting with this branch, use the [in-progress 0.4 documentation](https://github.com/hypervel/components/tree/0.4/src/docs). If you are coming from Laravel, begin with the [porting guide](https://github.com/hypervel/components/blob/0.4/src/docs/porting-from-laravel.md).
 >
 > Please do not use this branch for projects until a beta release is tagged. If you are experimenting or testing the rewrite, bug reports and feedback are very welcome.
 
 ## About Hypervel
 
-Hypervel is a modern, opinionated PHP framework built for Swoole. It runs applications inside long-lived workers and uses coroutines to handle many requests, jobs, and connections concurrently.
+Hypervel is a modern, asynchronous PHP framework built for high performance and scalability.
 
-When one coroutine is waiting on a database query, cache lookup, queue operation, file access, or HTTP request, the worker can continue serving other work. You write ordinary sequential PHP while Hypervel handles concurrent I/O underneath.
+Hypervel runs applications in long-lived Swoole workers, using coroutines to handle requests, background jobs, and network operations concurrently. While one coroutine waits for a database query, HTTP response, or other I/O, the worker can continue other work. This concurrency model runs throughout the framework, letting you write familiar sequential PHP while taking advantage of concurrent execution.
 
 Hypervel is built for traditional web applications, APIs, microservices, real-time services, background workers, and applications that spend much of their time waiting on external systems.
 
@@ -75,7 +75,7 @@ Moving an existing Laravel application or package to Hypervel is a deliberate po
 
 ## Learning Hypervel
 
-The complete Hypervel documentation is available at [hypervel.org/docs](https://hypervel.org/docs).
+The in-progress Hypervel 0.4 documentation is available [here](https://github.com/hypervel/components/tree/0.4/src/docs).
 
 Hypervel's documentation follows the structure and style of Laravel's documentation, and portions are adapted from it. Our thanks to the Laravel community.
 
