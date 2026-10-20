@@ -22,6 +22,13 @@ jobs:
       image: phpswoole/swoole:${{ matrix.swoole }}-php${{ matrix.php }}
 
     steps:
+      # Without Git in the container, actions/checkout downloads an archive
+      # that leaves out the export-ignored .github directory and its actions.
+      - name: Install Git
+        run: |
+            apt-get update -qq
+            apt-get install -y -qq git > /dev/null
+
       - name: Checkout code
         uses: actions/checkout@v6
 
