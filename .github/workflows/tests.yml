@@ -38,13 +38,6 @@ jobs:
       - name: Setup PHP extensions
         uses: ./.github/actions/setup-php
 
-      - name: Cache Composer dependencies
-        uses: actions/cache@v5
-        with:
-          path: /root/.composer/cache
-          key: composer-${{ matrix.php }}-${{ hashFiles('composer.json') }}
-          restore-keys: composer-${{ matrix.php }}-
-
       - name: Install dependencies
         run: |
             COMPOSER_MEMORY_LIMIT=-1 composer install --prefer-dist -n -o
