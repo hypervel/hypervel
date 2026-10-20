@@ -15,7 +15,7 @@
         "hypervel/framework": "^0.4"
     },
     "require-dev": {
-        "brianium/paratest": "^7.19",
+        "brianium/paratest": "^7.27.2",
         "fakerphp/faker": "^1.24",
         "friendsofphp/php-cs-fixer": "^3.57.2",
         "hypervel/watcher": "^0.4",
@@ -23,7 +23,7 @@
         "nunomaduro/collision": "^8.9",
         "phpstan/extension-installer": "^1.4.3",
         "phpstan/phpstan": "^2.0",
-        "phpunit/phpunit": "13.3.*",
+        "phpunit/phpunit": "~13.4.3",
         "swoole/ide-helper": "^6.0.2"
     },
     "autoload": {
