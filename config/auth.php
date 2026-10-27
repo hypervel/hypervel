@@ -49,7 +49,8 @@ return [
     | implementation does not retrieve users through a provider.
     |
     | Supported by default: "session". Install hypervel/sanctum to use
-    | the "sanctum" guard, and hypervel/jwt to use the "jwt" guard
+    | the "sanctum" guard, hypervel/jwt to use the "jwt" guard, and
+    | hypervel/passport to use the "passport" guard.
     |
     */
 
@@ -68,6 +69,10 @@ return [
         ],
         'jwt' => [
             'driver' => 'jwt',
+            'provider' => 'users',
+        ],
+        'passport' => [
+            'driver' => 'passport',
             'provider' => 'users',
         ],
     ],
