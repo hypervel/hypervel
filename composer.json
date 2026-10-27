@@ -87,9 +87,11 @@
         ],
         "cs-diff": "php-cs-fixer fix --path-mode=intersection `git diff --name-only --diff-filter=ACMRTUXB origin/main..HEAD`",
         "cs-fix": "php-cs-fixer fix $1",
+        "lint": "@php vendor/bin/php-cs-fixer fix --dry-run --diff",
+        "lint:fix": "@php vendor/bin/php-cs-fixer fix",
         "analyse": [
             "Composer\\Config::disableProcessTimeout",
-            "phpstan analyse --memory-limit 300M -c phpstan.neon"
+            "@php vendor/bin/phpstan analyse --memory-limit 300M -c phpstan.neon"
         ],
         "serve": [
             "Composer\\Config::disableProcessTimeout",
