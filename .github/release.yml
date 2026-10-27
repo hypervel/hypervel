@@ -1,0 +1,25 @@
+changelog:
+  exclude:
+    labels:
+      - ignore-for-release
+      - github-actions
+    authors:
+      - octocat
+      - dependabot
+  categories:
+    - title: Breaking Changes 🛠
+      labels:
+        - breaking-change
+    - title: New Features 🎉
+      labels:
+        - feature
+    - title: Improvements 🔧
+      labels:
+        - enhancement
+        - improvement
+    - title: Bug fixes 🐛
+      labels:
+        - bug
+    - title: Other Changes 🔄
+      labels:
+        - "*"

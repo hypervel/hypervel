@@ -1,0 +1,36 @@
+name: Setup PHP Extensions
+description: Install PHP extensions required by the test suite
+
+runs:
+  using: composite
+  steps:
+    - name: Install PHP extensions
+      shell: bash
+      run: |
+        apt-get update -qq
+        apt-get install -y -qq libgmp-dev libicu-dev libpq-dev libpng-dev libjpeg-dev libfreetype6-dev libsqlite3-dev > /dev/null
+
+        # Core extensions (installed via docker-php-ext-install)
+        core_extensions="pcntl intl gmp pdo_pgsql pdo_mysql pdo_sqlite sqlite3 bcmath gd fileinfo"
+        to_install=""
+        for ext in $core_extensions; do
+          if ! php -m 2>/dev/null | grep -qi "^${ext}$"; then
+            to_install="$to_install $ext"
+          fi
+        done
+
+        if [ -n "$to_install" ]; then
+          if echo "$to_install" | grep -q "gd"; then
+            docker-php-ext-configure gd --with-freetype --with-jpeg > /dev/null
+          fi
+          docker-php-ext-install -j$(nproc) $to_install > /dev/null
+        fi
+
+        # PECL extensions
+        if ! php -m 2>/dev/null | grep -qi "^redis$"; then
+          pecl install redis > /dev/null
+          docker-php-ext-enable redis > /dev/null
+        fi
+
+        # Disable Swoole shortnames to avoid shadowing foundation helpers
+        echo "swoole.use_shortname=Off" > /usr/local/etc/php/conf.d/99-swoole-shortname.ini

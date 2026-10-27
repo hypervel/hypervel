@@ -1,0 +1,99 @@
+{
+    "name": "hypervel/hypervel",
+    "type": "project",
+    "keywords": [
+        "php",
+        "swoole",
+        "framework",
+        "laravel",
+        "hypervel"
+    ],
+    "description": "The application skeleton for the Hypervel framework.",
+    "license": "MIT",
+    "require": {
+        "php": "^8.4",
+        "hypervel/framework": "^0.4"
+    },
+    "require-dev": {
+        "brianium/paratest": "^7.27.2",
+        "fakerphp/faker": "^1.24",
+        "friendsofphp/php-cs-fixer": "^3.57.2",
+        "hypervel/doctor": "^0.4",
+        "hypervel/watcher": "^0.4",
+        "mockery/mockery": "^1.6.15",
+        "nunomaduro/collision": "^8.9",
+        "phpstan/extension-installer": "^1.4.3",
+        "phpstan/phpstan": "^2.0",
+        "phpunit/phpunit": "~13.4.3",
+        "swoole/ide-helper": "^6.0.2"
+    },
+    "autoload": {
+        "psr-4": {
+            "App\\": "app/",
+            "Database\\Factories\\": "database/factories/",
+            "Database\\Seeders\\": "database/seeders/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Tests\\": "tests/"
+        }
+    },
+    "minimum-stability": "dev",
+    "prefer-stable": true,
+    "config": {
+        "optimize-autoloader": true,
+        "preferred-install": "dist",
+        "sort-packages": true,
+        "allow-plugins": {
+            "phpstan/extension-installer": true
+        }
+    },
+    "extra": {
+        "hypervel": {
+            "dont-discover": [],
+            "test-state": [
+                "Tests\\Support\\TestState"
+            ]
+        }
+    },
+    "scripts": {
+        "post-root-package-install": [
+            "@php -r \"file_exists('.env') || copy('.env.example', '.env');\""
+        ],
+        "post-create-project-cmd": [
+            "@php artisan key:generate --ansi",
+            "@php -r \"file_exists('database/database.sqlite') || touch('database/database.sqlite');\"",
+            "@php artisan migrate --graceful --ansi"
+        ],
+        "post-autoload-dump": [
+            "Hypervel\\Foundation\\ComposerScripts::postAutoloadDump",
+            "@php artisan package:discover --ansi"
+        ],
+        "post-update-cmd": [
+            "@php artisan vendor:publish --tag=hypervel-assets --ansi --force"
+        ],
+        "pre-package-uninstall": [
+            "Hypervel\\Foundation\\ComposerScripts::prePackageUninstall"
+        ],
+        "dev": [
+            "Composer\\Config::disableProcessTimeout",
+            "@php artisan dev"
+        ],
+        "test": [
+            "Composer\\Config::disableProcessTimeout",
+            "@php artisan config:clear --ansi @no_additional_args",
+            "@php artisan test --ansi --do-not-fail-on-empty-test-suite"
+        ],
+        "cs-diff": "php-cs-fixer fix --path-mode=intersection `git diff --name-only --diff-filter=ACMRTUXB origin/main..HEAD`",
+        "cs-fix": "php-cs-fixer fix $1",
+        "analyse": [
+            "Composer\\Config::disableProcessTimeout",
+            "phpstan analyse --memory-limit 300M -c phpstan.neon"
+        ],
+        "serve": [
+            "Composer\\Config::disableProcessTimeout",
+            "php artisan serve"
+        ]
+    }
+}

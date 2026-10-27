@@ -1,0 +1,53 @@
+name: tests
+
+on:
+  push:
+  pull_request:
+
+permissions:
+  contents: read
+
+jobs:
+  linux_tests:
+    runs-on: ubuntu-latest
+    if: "!contains(github.event.head_commit.message, '[skip ci]') && !contains(github.event.head_commit.message, '[ci skip]')"
+
+    strategy:
+      fail-fast: true
+      matrix:
+        include:
+          - php: "8.4"
+            swoole: "6.2.0"
+
+    name: PHP ${{ matrix.php }} (swoole-${{ matrix.swoole }})
+
+    container:
+      image: phpswoole/swoole:${{ matrix.swoole }}-php${{ matrix.php }}
+
+    steps:
+      # Without Git in the container, actions/checkout downloads an archive
+      # that leaves out the export-ignored .github directory and its actions.
+      - name: Install Git
+        run: |
+            apt-get update -qq
+            apt-get install -y -qq git > /dev/null
+
+      - name: Checkout code
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+
+      - name: Log trigger context
+        uses: ./.github/actions/log-trigger-context
+
+      - name: Setup PHP extensions
+        uses: ./.github/actions/setup-php
+
+      - name: Install dependencies
+        run: |
+            COMPOSER_MEMORY_LIMIT=-1 composer install --prefer-dist -n -o
+
+      - name: Execute tests
+        run: |
+            PHP_CS_FIXER_IGNORE_ENV=1 vendor/bin/php-cs-fixer fix --dry-run --diff
+            vendor/bin/phpunit

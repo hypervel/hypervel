@@ -1,0 +1,33 @@
+#!/usr/bin/env php
+<?php
+
+declare(strict_types=1);
+
+use Hypervel\Console\Application as ConsoleApplication;
+use Hypervel\Foundation\Application;
+use Symfony\Component\Console\Input\ArgvInput;
+
+ini_set('display_errors', 'on');
+ini_set('display_startup_errors', 'on');
+ini_set('memory_limit', '1G');
+
+error_reporting(E_ALL);
+
+! defined('BASE_PATH') && define('BASE_PATH', __DIR__);
+
+require BASE_PATH . '/vendor/autoload.php';
+
+$httpBootstrapCommands = ['serve', 'watch'];
+$input = new ArgvInput;
+
+if (in_array(ConsoleApplication::resolveCommandName($input), $httpBootstrapCommands, true)) {
+    // Forked server workers inherit this flag; separate Artisan processes must not.
+    $_SERVER['APP_RUNNING_IN_CONSOLE'] = 'false';
+}
+
+/** @var Application $app */
+$app = require BASE_PATH . '/bootstrap/app.php';
+
+$status = $app->handleCommand($input);
+
+exit($status);

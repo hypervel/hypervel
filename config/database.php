@@ -1,0 +1,346 @@
+<?php
+
+declare(strict_types=1);
+
+use Pdo\Mysql;
+
+return [
+    /*
+    |--------------------------------------------------------------------------
+    | Default Database Connection Name
+    |--------------------------------------------------------------------------
+    |
+    | Here you may specify which of the database connections below you wish
+    | to use as your default connection for database operations. This is
+    | the connection which will be utilized unless another connection
+    | is explicitly specified when you execute a query / statement.
+    |
+    */
+
+    'default' => env('DB_CONNECTION', 'sqlite'),
+
+    /*
+    |--------------------------------------------------------------------------
+    | Database Connection Pools
+    |--------------------------------------------------------------------------
+    |
+    | Database connections may define a "pool" array for long-lived workers.
+    | Heartbeats validate idle connections, while max lifetime recycling
+    | rotates old idle connection generations before they are reused.
+    |
+    */
+
+    /*
+    |--------------------------------------------------------------------------
+    | Database Connections
+    |--------------------------------------------------------------------------
+    |
+    | Below are all of the database connections defined for your application.
+    | An example configuration is provided for each database system which
+    | is supported by Hypervel. You're free to add / remove connections.
+    | A connection may set "migrations_connection" to route migrations
+    | through another named connection. When omitted, migrations use the
+    | selected connection itself.
+    |
+    */
+
+    'connections' => [
+        'sqlite' => [
+            'driver' => 'sqlite',
+            'url' => env('DB_URL'),
+            'database' => env('DB_DATABASE', database_path('database.sqlite')),
+            'prefix' => '',
+            'prefix_indexes' => null,
+            'mask_bindings_in_exception_messages' => (bool) env('DB_MASK_BINDINGS', false),
+            'foreign_key_constraints' => (bool) env('DB_FOREIGN_KEYS', true),
+            'busy_timeout' => null,
+            'journal_mode' => null,
+            'synchronous' => null,
+            'transaction_mode' => 'DEFERRED',
+            'pragmas' => [],
+        ],
+
+        'mysql' => [
+            'driver' => 'mysql',
+            'url' => env('DB_URL'),
+            'host' => env('DB_HOST', '127.0.0.1'),
+            'port' => (int) env('DB_PORT', 3306),
+            'database' => env('DB_DATABASE', 'hypervel'),
+            'username' => env('DB_USERNAME', 'root'),
+            'password' => env('DB_PASSWORD', ''),
+            'unix_socket' => env('DB_SOCKET', ''),
+            'charset' => env('DB_CHARSET', 'utf8mb4'),
+            'collation' => env('DB_COLLATION', 'utf8mb4_unicode_ci'),
+            'prefix' => env('DB_PREFIX', ''),
+            'prefix_indexes' => true,
+            'mask_bindings_in_exception_messages' => (bool) env('DB_MASK_BINDINGS', false),
+            'strict' => true,
+            'engine' => null,
+            'options' => extension_loaded('pdo_mysql') ? array_filter([
+                Mysql::ATTR_SSL_CA => env('MYSQL_ATTR_SSL_CA'),
+            ]) : [],
+            'pool' => [
+                'min_retained_connections' => (int) env('DB_MIN_RETAINED_CONNECTIONS', 1),
+                'max_connections' => (int) env('DB_MAX_CONNECTIONS', 10),
+                'connect_timeout' => 10.0,
+                'wait_timeout' => 3.0,
+                'heartbeat_interval' => ($duration = env('DB_HEARTBEAT_INTERVAL')) === null ? null : (float) $duration,
+                'heartbeat_timeout' => (float) env('DB_HEARTBEAT_TIMEOUT', 1.0),
+                'idle_check_interval' => null,
+                'max_idle_time' => ($duration = env('DB_MAX_IDLE_TIME', 60)) === null ? null : (float) $duration,
+                'max_lifetime' => ($duration = env('DB_MAX_LIFETIME')) === null ? null : (float) $duration,
+            ],
+        ],
+
+        'mariadb' => [
+            'driver' => 'mariadb',
+            'url' => env('DB_URL'),
+            'host' => env('DB_HOST', '127.0.0.1'),
+            'port' => (int) env('DB_PORT', 3306),
+            'database' => env('DB_DATABASE', 'hypervel'),
+            'username' => env('DB_USERNAME', 'root'),
+            'password' => env('DB_PASSWORD', ''),
+            'unix_socket' => env('DB_SOCKET', ''),
+            'charset' => env('DB_CHARSET', 'utf8mb4'),
+            'collation' => env('DB_COLLATION', 'utf8mb4_unicode_ci'),
+            'prefix' => env('DB_PREFIX', ''),
+            'prefix_indexes' => true,
+            'mask_bindings_in_exception_messages' => (bool) env('DB_MASK_BINDINGS', false),
+            'strict' => true,
+            'engine' => null,
+            'options' => extension_loaded('pdo_mysql') ? array_filter([
+                Mysql::ATTR_SSL_CA => env('MYSQL_ATTR_SSL_CA'),
+            ]) : [],
+            'pool' => [
+                'min_retained_connections' => (int) env('DB_MIN_RETAINED_CONNECTIONS', 1),
+                'max_connections' => (int) env('DB_MAX_CONNECTIONS', 10),
+                'connect_timeout' => 10.0,
+                'wait_timeout' => 3.0,
+                'heartbeat_interval' => ($duration = env('DB_HEARTBEAT_INTERVAL')) === null ? null : (float) $duration,
+                'heartbeat_timeout' => (float) env('DB_HEARTBEAT_TIMEOUT', 1.0),
+                'idle_check_interval' => null,
+                'max_idle_time' => ($duration = env('DB_MAX_IDLE_TIME', 60)) === null ? null : (float) $duration,
+                'max_lifetime' => ($duration = env('DB_MAX_LIFETIME')) === null ? null : (float) $duration,
+            ],
+        ],
+
+        'pgsql' => [
+            'driver' => 'pgsql',
+            'url' => env('DB_URL'),
+            'host' => env('DB_HOST', '127.0.0.1'),
+            'port' => (int) env('DB_PORT', 5432),
+            'database' => env('DB_DATABASE', 'hypervel'),
+            'username' => env('DB_USERNAME', 'root'),
+            'password' => env('DB_PASSWORD', ''),
+            'charset' => env('DB_CHARSET', 'utf8'),
+            'prefix' => env('DB_PREFIX', ''),
+            'prefix_indexes' => true,
+            'mask_bindings_in_exception_messages' => (bool) env('DB_MASK_BINDINGS', false),
+            'search_path' => 'public',
+            'sslmode' => env('DB_SSLMODE', 'prefer'),
+            'options' => [
+                PDO::ATTR_EMULATE_PREPARES => true,
+            ],
+            'pool' => [
+                'min_retained_connections' => (int) env('DB_MIN_RETAINED_CONNECTIONS', 1),
+                'max_connections' => (int) env('DB_MAX_CONNECTIONS', 10),
+                'connect_timeout' => 10.0,
+                'wait_timeout' => 3.0,
+                'heartbeat_interval' => ($duration = env('DB_HEARTBEAT_INTERVAL')) === null ? null : (float) $duration,
+                'heartbeat_timeout' => (float) env('DB_HEARTBEAT_TIMEOUT', 1.0),
+                'idle_check_interval' => null,
+                'max_idle_time' => ($duration = env('DB_MAX_IDLE_TIME', 60)) === null ? null : (float) $duration,
+                'max_lifetime' => ($duration = env('DB_MAX_LIFETIME')) === null ? null : (float) $duration,
+            ],
+        ],
+
+        'pgsql-pooled' => [
+            'driver' => 'pgsql',
+            'url' => env('DB_POOLED_URL', env('DB_URL')),
+            'host' => env('DB_POOLED_HOST', env('DB_HOST', '127.0.0.1')),
+            'port' => (int) env('DB_POOLED_PORT', 6432),
+            'database' => env('DB_POOLED_DATABASE', env('DB_DATABASE', 'hypervel')),
+            'username' => env('DB_POOLED_USERNAME', env('DB_USERNAME', 'root')),
+            'password' => env('DB_POOLED_PASSWORD', env('DB_PASSWORD', '')),
+            'charset' => env('DB_CHARSET', 'utf8'),
+            'prefix' => env('DB_PREFIX', ''),
+            'prefix_indexes' => true,
+            'mask_bindings_in_exception_messages' => (bool) env('DB_MASK_BINDINGS', false),
+            'search_path' => 'public',
+            'sslmode' => env('DB_POOLED_SSLMODE', env('DB_SSLMODE', 'prefer')),
+            'options' => [
+                PDO::ATTR_EMULATE_PREPARES => true,
+            ],
+            'migrations_connection' => 'pgsql',
+            'pool' => [
+                'min_retained_connections' => (int) env('DB_POOLED_MIN_RETAINED_CONNECTIONS', 1),
+                'max_connections' => (int) env('DB_POOLED_MAX_CONNECTIONS', 20),
+                'connect_timeout' => 10.0,
+                'wait_timeout' => 3.0,
+                'heartbeat_interval' => ($duration = env('DB_POOLED_HEARTBEAT_INTERVAL')) === null ? null : (float) $duration,
+                'heartbeat_timeout' => (float) env('DB_POOLED_HEARTBEAT_TIMEOUT', 1.0),
+                'idle_check_interval' => null,
+                'max_idle_time' => ($duration = env('DB_POOLED_MAX_IDLE_TIME', 60)) === null ? null : (float) $duration,
+                'max_lifetime' => ($duration = env('DB_POOLED_MAX_LIFETIME')) === null ? null : (float) $duration,
+            ],
+        ],
+    ],
+
+    /*
+    |--------------------------------------------------------------------------
+    | Migration Repository Table
+    |--------------------------------------------------------------------------
+    |
+    | This table keeps track of all the migrations that have already run for
+    | your application. Using this information, we can determine which of
+    | the migrations on disk haven't actually been run on the database.
+    | Omitting update_date_on_publish leaves published migration timestamps
+    | unchanged.
+    |
+    */
+
+    'migrations' => [
+        'table' => 'migrations',
+        'update_date_on_publish' => true,
+    ],
+
+    /*
+    |--------------------------------------------------------------------------
+    | Redis Databases
+    |--------------------------------------------------------------------------
+    |
+    | Redis is an open source, fast, and advanced key-value store that also
+    | provides a richer body of commands than a typical key-value system
+    | such as Memcached. Advanced transport, connection and read timeouts,
+    | retry and backoff settings, client name, stream context, per-connection
+    | options, prefix, and command event settings may be added when needed.
+    | The Redis documentation describes these optional settings.
+    |
+    */
+
+    'redis' => [
+        'options' => [
+            'prefix' => env('REDIS_PREFIX', app_id() . ':'),
+        ],
+
+        'default' => [
+            'url' => env('REDIS_URL'),
+            'host' => env('REDIS_HOST', '127.0.0.1'),
+            'username' => env('REDIS_USERNAME'),
+            'password' => env('REDIS_PASSWORD'),
+            'port' => (int) env('REDIS_PORT', 6379),
+            'database' => (int) env('REDIS_DB', 0),
+            'max_retries' => (int) env('REDIS_MAX_RETRIES', 3),
+            'backoff_algorithm' => env('REDIS_BACKOFF_ALGORITHM', 'decorrelated_jitter'),
+            'backoff_base' => (int) env('REDIS_BACKOFF_BASE', 100),
+            'backoff_cap' => (int) env('REDIS_BACKOFF_CAP', 1000),
+            'pool' => [
+                'min_retained_connections' => (int) env('REDIS_MIN_RETAINED_CONNECTIONS', 1),
+                'max_connections' => (int) env('REDIS_MAX_CONNECTIONS', 10),
+                'connect_timeout' => 10.0,
+                'wait_timeout' => 3.0,
+                'heartbeat_interval' => ($duration = env('REDIS_HEARTBEAT_INTERVAL')) === null ? null : (float) $duration,
+                'heartbeat_timeout' => (float) env('REDIS_HEARTBEAT_TIMEOUT', 1.0),
+                'idle_check_interval' => null,
+                'max_idle_time' => ($duration = env('REDIS_MAX_IDLE_TIME', 60)) === null ? null : (float) $duration,
+                'max_lifetime' => ($duration = env('REDIS_MAX_LIFETIME')) === null ? null : (float) $duration,
+            ],
+        ],
+
+        'cache' => [
+            'url' => env('REDIS_CACHE_URL', env('REDIS_URL')),
+            'host' => env('REDIS_CACHE_HOST', env('REDIS_HOST', '127.0.0.1')),
+            'username' => env('REDIS_CACHE_USERNAME', env('REDIS_USERNAME')),
+            'password' => env('REDIS_CACHE_PASSWORD', env('REDIS_PASSWORD')),
+            'port' => (int) env('REDIS_CACHE_PORT', env('REDIS_PORT', 6379)),
+            'database' => (int) env('REDIS_CACHE_DB', env('REDIS_DB', 0)),
+            'max_retries' => (int) env('REDIS_CACHE_MAX_RETRIES', env('REDIS_MAX_RETRIES', 3)),
+            'backoff_algorithm' => env('REDIS_CACHE_BACKOFF_ALGORITHM', env('REDIS_BACKOFF_ALGORITHM', 'decorrelated_jitter')),
+            'backoff_base' => (int) env('REDIS_CACHE_BACKOFF_BASE', env('REDIS_BACKOFF_BASE', 100)),
+            'backoff_cap' => (int) env('REDIS_CACHE_BACKOFF_CAP', env('REDIS_BACKOFF_CAP', 1000)),
+            'pool' => [
+                'min_retained_connections' => (int) env('REDIS_CACHE_MIN_RETAINED_CONNECTIONS', env('REDIS_MIN_RETAINED_CONNECTIONS', 1)),
+                'max_connections' => (int) env('REDIS_CACHE_MAX_CONNECTIONS', env('REDIS_MAX_CONNECTIONS', 10)),
+                'connect_timeout' => 10.0,
+                'wait_timeout' => 3.0,
+                'heartbeat_interval' => ($duration = env('REDIS_CACHE_HEARTBEAT_INTERVAL', env('REDIS_HEARTBEAT_INTERVAL'))) === null ? null : (float) $duration,
+                'heartbeat_timeout' => (float) env('REDIS_CACHE_HEARTBEAT_TIMEOUT', env('REDIS_HEARTBEAT_TIMEOUT', 1.0)),
+                'idle_check_interval' => null,
+                'max_idle_time' => ($duration = env('REDIS_CACHE_MAX_IDLE_TIME', env('REDIS_MAX_IDLE_TIME', 60))) === null ? null : (float) $duration,
+                'max_lifetime' => ($duration = env('REDIS_CACHE_MAX_LIFETIME', env('REDIS_MAX_LIFETIME'))) === null ? null : (float) $duration,
+            ],
+        ],
+
+        'session' => [
+            'url' => env('REDIS_SESSION_URL', env('REDIS_URL')),
+            'host' => env('REDIS_SESSION_HOST', env('REDIS_HOST', '127.0.0.1')),
+            'username' => env('REDIS_SESSION_USERNAME', env('REDIS_USERNAME')),
+            'password' => env('REDIS_SESSION_PASSWORD', env('REDIS_PASSWORD')),
+            'port' => (int) env('REDIS_SESSION_PORT', env('REDIS_PORT', 6379)),
+            'database' => (int) env('REDIS_SESSION_DB', env('REDIS_DB', 0)),
+            'max_retries' => (int) env('REDIS_SESSION_MAX_RETRIES', env('REDIS_MAX_RETRIES', 3)),
+            'backoff_algorithm' => env('REDIS_SESSION_BACKOFF_ALGORITHM', env('REDIS_BACKOFF_ALGORITHM', 'decorrelated_jitter')),
+            'backoff_base' => (int) env('REDIS_SESSION_BACKOFF_BASE', env('REDIS_BACKOFF_BASE', 100)),
+            'backoff_cap' => (int) env('REDIS_SESSION_BACKOFF_CAP', env('REDIS_BACKOFF_CAP', 1000)),
+            'pool' => [
+                'min_retained_connections' => (int) env('REDIS_SESSION_MIN_RETAINED_CONNECTIONS', env('REDIS_MIN_RETAINED_CONNECTIONS', 1)),
+                'max_connections' => (int) env('REDIS_SESSION_MAX_CONNECTIONS', env('REDIS_MAX_CONNECTIONS', 10)),
+                'connect_timeout' => 10.0,
+                'wait_timeout' => 3.0,
+                'heartbeat_interval' => ($duration = env('REDIS_SESSION_HEARTBEAT_INTERVAL', env('REDIS_HEARTBEAT_INTERVAL'))) === null ? null : (float) $duration,
+                'heartbeat_timeout' => (float) env('REDIS_SESSION_HEARTBEAT_TIMEOUT', env('REDIS_HEARTBEAT_TIMEOUT', 1.0)),
+                'idle_check_interval' => null,
+                'max_idle_time' => ($duration = env('REDIS_SESSION_MAX_IDLE_TIME', env('REDIS_MAX_IDLE_TIME', 60))) === null ? null : (float) $duration,
+                'max_lifetime' => ($duration = env('REDIS_SESSION_MAX_LIFETIME', env('REDIS_MAX_LIFETIME'))) === null ? null : (float) $duration,
+            ],
+        ],
+
+        'queue' => [
+            'url' => env('REDIS_QUEUE_URL', env('REDIS_URL')),
+            'host' => env('REDIS_QUEUE_HOST', env('REDIS_HOST', '127.0.0.1')),
+            'username' => env('REDIS_QUEUE_USERNAME', env('REDIS_USERNAME')),
+            'password' => env('REDIS_QUEUE_PASSWORD', env('REDIS_PASSWORD')),
+            'port' => (int) env('REDIS_QUEUE_PORT', env('REDIS_PORT', 6379)),
+            'database' => (int) env('REDIS_QUEUE_DB', env('REDIS_DB', 0)),
+            'max_retries' => (int) env('REDIS_QUEUE_MAX_RETRIES', env('REDIS_MAX_RETRIES', 3)),
+            'backoff_algorithm' => env('REDIS_QUEUE_BACKOFF_ALGORITHM', env('REDIS_BACKOFF_ALGORITHM', 'decorrelated_jitter')),
+            'backoff_base' => (int) env('REDIS_QUEUE_BACKOFF_BASE', env('REDIS_BACKOFF_BASE', 100)),
+            'backoff_cap' => (int) env('REDIS_QUEUE_BACKOFF_CAP', env('REDIS_BACKOFF_CAP', 1000)),
+            'pool' => [
+                'min_retained_connections' => (int) env('REDIS_QUEUE_MIN_RETAINED_CONNECTIONS', env('REDIS_MIN_RETAINED_CONNECTIONS', 1)),
+                'max_connections' => (int) env('REDIS_QUEUE_MAX_CONNECTIONS', env('REDIS_MAX_CONNECTIONS', 10)),
+                'connect_timeout' => 10.0,
+                'wait_timeout' => 3.0,
+                'heartbeat_interval' => ($duration = env('REDIS_QUEUE_HEARTBEAT_INTERVAL', env('REDIS_HEARTBEAT_INTERVAL'))) === null ? null : (float) $duration,
+                'heartbeat_timeout' => (float) env('REDIS_QUEUE_HEARTBEAT_TIMEOUT', env('REDIS_HEARTBEAT_TIMEOUT', 1.0)),
+                'idle_check_interval' => null,
+                'max_idle_time' => ($duration = env('REDIS_QUEUE_MAX_IDLE_TIME', env('REDIS_MAX_IDLE_TIME', 60))) === null ? null : (float) $duration,
+                'max_lifetime' => ($duration = env('REDIS_QUEUE_MAX_LIFETIME', env('REDIS_MAX_LIFETIME'))) === null ? null : (float) $duration,
+            ],
+        ],
+
+        'reverb' => [
+            'url' => env('REDIS_REVERB_URL', env('REDIS_URL')),
+            'host' => env('REDIS_REVERB_HOST', env('REDIS_HOST', '127.0.0.1')),
+            'username' => env('REDIS_REVERB_USERNAME', env('REDIS_USERNAME')),
+            'password' => env('REDIS_REVERB_PASSWORD', env('REDIS_PASSWORD')),
+            'port' => (int) env('REDIS_REVERB_PORT', env('REDIS_PORT', 6379)),
+            'database' => (int) env('REDIS_REVERB_DB', env('REDIS_DB', 0)),
+            'max_retries' => (int) env('REDIS_REVERB_MAX_RETRIES', env('REDIS_MAX_RETRIES', 3)),
+            'backoff_algorithm' => env('REDIS_REVERB_BACKOFF_ALGORITHM', env('REDIS_BACKOFF_ALGORITHM', 'decorrelated_jitter')),
+            'backoff_base' => (int) env('REDIS_REVERB_BACKOFF_BASE', env('REDIS_BACKOFF_BASE', 100)),
+            'backoff_cap' => (int) env('REDIS_REVERB_BACKOFF_CAP', env('REDIS_BACKOFF_CAP', 1000)),
+            'pool' => [
+                'min_retained_connections' => (int) env('REDIS_REVERB_MIN_RETAINED_CONNECTIONS', env('REDIS_MIN_RETAINED_CONNECTIONS', 1)),
+                'max_connections' => (int) env('REDIS_REVERB_MAX_CONNECTIONS', env('REDIS_MAX_CONNECTIONS', 10)),
+                'connect_timeout' => 10.0,
+                'wait_timeout' => 3.0,
+                'heartbeat_interval' => ($duration = env('REDIS_REVERB_HEARTBEAT_INTERVAL', env('REDIS_HEARTBEAT_INTERVAL'))) === null ? null : (float) $duration,
+                'heartbeat_timeout' => (float) env('REDIS_REVERB_HEARTBEAT_TIMEOUT', env('REDIS_HEARTBEAT_TIMEOUT', 1.0)),
+                'idle_check_interval' => null,
+                'max_idle_time' => ($duration = env('REDIS_REVERB_MAX_IDLE_TIME', env('REDIS_MAX_IDLE_TIME', 60))) === null ? null : (float) $duration,
+                'max_lifetime' => ($duration = env('REDIS_REVERB_MAX_LIFETIME', env('REDIS_MAX_LIFETIME'))) === null ? null : (float) $duration,
+            ],
+        ],
+    ],
+];

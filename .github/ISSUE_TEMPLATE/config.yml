@@ -1,0 +1,14 @@
+blank_issues_enabled: false
+contact_links:
+  - name: Bug Report (Framework)
+    url: https://github.com/hypervel/components/issues
+    about: "Report something that's broken in the framework."
+  - name: Feature Request
+    url: https://github.com/hypervel/components/discussions
+    about: 'For ideas or feature requests, start a new discussion.'
+  - name: Support Questions
+    url: https://github.com/hypervel/components/discussions
+    about: 'For support questions and other help, start a discussion in the components repository.'
+  - name: Documentation Issues
+    url: https://github.com/hypervel/components/blob/0.4/src/docs/contributions.md#pull-request-requirements
+    about: For documentation issues, please open a pull request in the components repository.

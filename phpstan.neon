@@ -1,0 +1,8 @@
+parameters:
+  level: 5
+  treatPhpDocTypesAsCertain: false
+  paths:
+    - app
+    - config
+  excludePaths:
+  ignoreErrors:
