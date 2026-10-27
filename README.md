@@ -26,9 +26,9 @@ Hypervel is built for traditional web applications, APIs, microservices, real-ti
 
 ## About This Repository
 
-This repository contains the application skeleton for the Hypervel framework. It provides the default application structure and configuration used when creating a new Hypervel project. The framework source and first-party packages are maintained in the [Hypervel components repository](https://github.com/hypervel/components).
+This repository is a read-only split of the Hypervel application skeleton. It provides the default application structure and configuration used when creating a new Hypervel project. The skeleton is maintained in [hypervel/components](https://github.com/hypervel/components/tree/0.4/skeletons/hypervel), alongside the framework source and first-party packages.
 
-Use this repository's [Issues](https://github.com/hypervel/hypervel/issues) only for problems with the application skeleton's default files, configuration, or starter code. Report framework bugs through the components repository's [Issues](https://github.com/hypervel/components/issues), and use its [Discussions](https://github.com/hypervel/components/discussions) for support questions, feature requests, and ideas.
+Report skeleton and framework bugs through the components repository's [Issues](https://github.com/hypervel/components/issues), and use its [Discussions](https://github.com/hypervel/components/discussions) for support questions, feature requests, and ideas.
 
 ## Getting Started
 
@@ -95,7 +95,7 @@ Boost can search version-specific documentation, inspect your application, query
 
 Thank you for considering contributing to Hypervel. The [contribution guide](https://github.com/hypervel/components/blob/0.4/src/docs/contributions.md) explains which changes are accepted, how to run the required checks, and how to prepare a pull request.
 
-Framework changes should be submitted to the [components repository](https://github.com/hypervel/components). Issues and pull requests in this repository should be limited to the default application structure, configuration, and starter code.
+Submit skeleton and framework changes to the [components repository](https://github.com/hypervel/components).
 
 ## Code of Conduct
 
