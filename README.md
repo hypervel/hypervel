@@ -1,7 +1,7 @@
 <p align="center"><a href="https://hypervel.org" target="_blank"><img src="https://hypervel.org/logo.png" width="400" alt="Hypervel Logo"></a></p>
 
 <p align="center">
-<a href="https://github.com/hypervel/hypervel/actions"><img src="https://github.com/hypervel/hypervel/workflows/tests/badge.svg" alt="Build Status"></a>
+<a href="https://github.com/hypervel/components/actions/workflows/skeletons.yml?query=branch%3A0.4"><img src="https://github.com/hypervel/components/actions/workflows/skeletons.yml/badge.svg?branch=0.4" alt="Build Status"></a>
 <a href="https://packagist.org/packages/hypervel/hypervel"><img src="https://img.shields.io/packagist/dt/hypervel/hypervel" alt="Total Downloads"></a>
 <a href="https://packagist.org/packages/hypervel/hypervel"><img src="https://img.shields.io/packagist/v/hypervel/hypervel" alt="Latest Stable Version"></a>
 <a href="https://packagist.org/packages/hypervel/hypervel"><img src="https://img.shields.io/packagist/l/hypervel/hypervel" alt="License"></a>
@@ -35,7 +35,7 @@ Report skeleton and framework bugs through the components repository's [Issues](
 Create a new Hypervel application using Composer's `create-project` command:
 
 ```bash
-composer create-project hypervel/hypervel example-app
+composer create-project hypervel/hypervel example-app "0.4.x-dev"
 
 cd example-app
 php artisan serve
@@ -43,11 +43,7 @@ php artisan serve
 
 Once the development server has started, the application will be available at [http://localhost:8000](http://localhost:8000).
 
-If you prefer to build your frontend with Inertia and React, you may start with the official React application starter kit:
-
-```bash
-composer create-project hypervel/react-starter-kit example-app
-```
+For applications with a React frontend, see the official [React starter kit](https://github.com/hypervel/react-starter-kit).
 
 See the [installation documentation](https://github.com/hypervel/components/blob/0.4/src/docs/installation.md) and [starter kit documentation](https://github.com/hypervel/components/blob/0.4/src/docs/starter-kits.md) for the complete setup instructions.
 
