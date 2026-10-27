@@ -1,0 +1,39 @@
+name: tests
+
+on:
+  push:
+  pull_request:
+
+jobs:
+  linux_tests:
+    runs-on: ubuntu-latest
+    if: "!contains(github.event.head_commit.message, '[skip ci]') && !contains(github.event.head_commit.message, '[ci skip]')"
+
+    strategy:
+      fail-fast: true
+      matrix:
+        include:
+          - php: "8.2"
+            swoole: "5.1.6"
+          - php: "8.3"
+            swoole: "5.1.6"
+          - php: "8.4"
+            swoole: "6.0"
+
+    name: PHP ${{ matrix.php }} (swoole-${{ matrix.swoole }})
+
+    container:
+      image: phpswoole/swoole:${{ matrix.swoole }}-php${{ matrix.php }}
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Install dependencies
+        run: |
+            COMPOSER_MEMORY_LIMIT=-1 composer install --prefer-dist -n -o
+
+      - name: Execute tests
+        run: |
+            PHP_CS_FIXER_IGNORE_ENV=1 vendor/bin/php-cs-fixer fix --dry-run --diff
+            vendor/bin/phpunit -c phpunit.xml.dist

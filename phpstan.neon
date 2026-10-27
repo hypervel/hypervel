@@ -1,0 +1,11 @@
+# Magic behaviour with __get, __set, __call and __callStatic is not exactly static analyser-friendly :)
+# Fortunately, You can ignore it by the following config.
+#
+parameters:
+  level: 5
+  paths:
+    - app
+    - config
+  reportUnmatchedIgnoredErrors: false
+  excludePaths:
+  ignoreErrors:
