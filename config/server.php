@@ -73,7 +73,6 @@ return [
         Constant::OPTION_MAX_REQUEST => (int) env('SERVER_MAX_REQUESTS', 100000),
         Constant::OPTION_MAX_WAIT_TIME => (int) env('SERVER_MAX_WAIT_TIME', 3),
         Constant::OPTION_SOCKET_BUFFER_SIZE => 2 * 1024 * 1024,
-        Constant::OPTION_BUFFER_OUTPUT_SIZE => 2 * 1024 * 1024,
 
         // Disabled by default — when behind a reverse proxy (nginx), Swoole
         // compression is wasted CPU since the proxy decompresses and
