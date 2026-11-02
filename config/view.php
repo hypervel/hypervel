@@ -15,6 +15,5 @@ return [
     'event' => [
         'enable' => false,
     ],
-    'components' => [
-    ],
+    'components' => [],
 ];

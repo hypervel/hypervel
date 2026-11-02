@@ -7,5 +7,4 @@ declare(strict_types=1);
  * And all the configs in config/config.php are moved to config/app.php
  * This file is only kept for the compatibility for root config design in Hyperf framework.
  */
-return [
-];
+return [];
