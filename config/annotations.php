@@ -4,8 +4,7 @@ declare(strict_types=1);
 
 return [
     'scan' => [
-        'paths' => [
-        ],
+        'paths' => [],
         'ignore_annotations' => [
             'mixin',
         ],

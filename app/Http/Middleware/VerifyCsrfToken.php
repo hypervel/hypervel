@@ -13,6 +13,5 @@ class VerifyCsrfToken extends Middleware
      *
      * @var array<int, string>
      */
-    protected array $except = [
-    ];
+    protected array $except = [];
 }
