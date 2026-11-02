@@ -115,6 +115,8 @@ return [
     | the original token being created until they must re-authenticate.
     | Defaults to 2 weeks.
     |
+    | Expired tokens can still be refreshed within this window.
+    |
     | You can also set this to null, to yield an infinite refresh time.
     | Some may want this instead of never expiring tokens for e.g. a mobile app.
     | This is not particularly recommended, so make sure you have appropriate
@@ -159,12 +161,15 @@ return [
     | A TokenInvalidException will be thrown if any of these claims are not
     | present in the payload.
     |
+    | Note: If you set 'ttl' to null you should remove 'exp' from this list,
+    | because tokens will then be issued without an expiration.
+    |
     */
 
     'required_claims' => [
         // 'iss',
         'iat',
-        // 'exp',
+        'exp',
         // 'nbf',
         'sub',
         // 'jti',
@@ -238,6 +243,9 @@ return [
     | -------------------------------------------------------------------------
     |
     | Number of minutes from issue date in which a JWT can be refreshed.
+    |
+    | Blacklisted tokens are always kept for at least 'refresh_ttl', and
+    | forever if 'refresh_ttl' is null, so they can never be refreshed again.
     |
     */
 
